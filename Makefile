@@ -8,10 +8,13 @@ OBJS = $(SRC:.c=.o)
 
 FLAGS = -Wall -Werror -Wextra -Imlx
 
+MINILIBX = /minilibx/libmlx.a
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME) -framework OpenGL -framework AppKit -o $(NAME)
+	@make -C minilibx
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME) -lmlx framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
