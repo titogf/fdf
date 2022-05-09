@@ -6,13 +6,13 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/03 17:31:03 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:43:52 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_putstr(char *str)
+void	ft_putfinish(char *str)
 {
 	int	i;
 
@@ -22,10 +22,5 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
-}
-
-void	ft_putfinish(char *s)
-{
-	ft_putstr(s);
 	exit(1);
 }

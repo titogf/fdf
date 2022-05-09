@@ -6,11 +6,15 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:40:27 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/03 18:28:00 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:17:47 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int	ft_count(char *s, char c);
+static char	**ft_site(char **str, char *s, char c);
+static char	**ft_free(char **str, int count);
 
 char	**ft_split(char *s, char c)
 {
@@ -72,27 +76,6 @@ static char	**ft_site(char **str, char *s, char c)
 	}
 	str[found - 1] = NULL;
 	return (str);
-}
-
-char	*ft_substr(char *s, int start, int len)
-{
-	int		i;
-	char	*d;
-
-	if (s == '\0')
-		return (NULL);
-	i = 0;
-	d = (char *)malloc(sizeof(char) * len + 1);
-	if (!d)
-		return (NULL);
-	while (s[start] && i < len)
-	{
-		d[i] = s[start];
-		i++;
-		start++;
-	}
-	d[i] = '\0';
-	return (d);
 }
 
 static char	**ft_free(char **str, int count)

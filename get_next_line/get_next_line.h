@@ -6,13 +6,14 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:22:00 by gfernand          #+#    #+#             */
-/*   Updated: 2022/03/10 12:43:48 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/09 13:47:57 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# define BUFFER_SIZE 100
 # include <stdlib.h>
 # include <unistd.h>
 
