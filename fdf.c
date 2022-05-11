@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/11 15:53:24 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:19:09 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int  exkey(t_data *data);
 int	main(int argc, char **argv)
 {
 	int		fd;
+	char	*line;
+	char	**s;
 	t_data	data;
 
 	if (argc != 2)
@@ -32,7 +34,12 @@ int	main(int argc, char **argv)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	get_next_line(fd);
+	line = get_next_line(fd);
+	while (line != NULL)
+	 {
+		s = ft_split(line, ' ');
+		line = get_next_line(fd);
+	}
 	mlx_hook(data.win_ptr, 02, 1L<<0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
 	mlx_loop(data.mlx_ptr);
