@@ -6,11 +6,11 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:14:03 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/09 16:43:19 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:03:57 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../fdf.h"
 
 char	*get_next_line(int fd)
 {

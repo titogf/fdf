@@ -6,12 +6,11 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 13:38:12 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/09 15:17:51 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:04:08 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "../fdf.h"
 
 int	ft_strlen(const char *s)
 {
@@ -48,7 +47,7 @@ int	ft_enter(char *str)
 	return (-1);
 }
 
-char	*ft_substr(char const *s, unsigned int start, int len)
+char	*ft_substr(char *s, int start, int len)
 {
 	int		i;
 	char	*d;

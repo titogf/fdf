@@ -6,14 +6,14 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/10 17:21:19 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/11 15:53:24 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int  ft_pixel(t_data *data);
 static int  keyb(int key, t_data *data);
+static int  exkey(t_data *data);
 
 int	main(int argc, char **argv)
 {
@@ -32,18 +32,12 @@ int	main(int argc, char **argv)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	mlx_loop_hook(data.mlx_ptr, &ft_pixel, &data);
+	get_next_line(fd);
 	mlx_hook(data.win_ptr, 02, 1L<<0, &keyb, &data);
+	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
 	free(data.mlx_ptr);
-	return (0);
-}
-
-static int	ft_pixel(t_data *data)
-{
-	if (data->win_ptr)
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, 450, 300, 0xFF0000);
 	return (0);
 }
 
@@ -56,4 +50,11 @@ static int	keyb(int key, t_data *data)
 		exit(1);
 	}
 	return (0);
+}
+
+static int	exkey(t_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	data->win_ptr = NULL;
+	exit(1);
 }
