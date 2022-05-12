@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/11 16:08:59 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:34:36 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FDF_H
 
 # define BUFFER_SIZE 100
+# define WIDE 600 //altura ventana
+# define HEIGHT 900 //anchura ventana
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -31,7 +33,7 @@ int			ft_atoi(const char *str);
 char		*get_next_line(int fd);
 char		*ft_export_line(char *str, char *s);
 char		*ft_leftover(char *str, char *s);
-char        *ft_substr(char *s, int start, int len);
+char		*ft_substr(char *s, int start, int len);
 int			ft_strlen(const char *s);
 char		*ft_stuff(void);
 int			ft_enter(char *str);
