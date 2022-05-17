@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/17 13:57:36 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/17 17:42:46 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,23 @@
 #include <stdio.h>
 
 static char	**ft_get_map(int fd);
+//static int	ft_filas(char *av);
+//static int	ft_columnas(char *av);
+
+void checkLeaks(void)
+{
+	system("leaks fdf");
+}
 
 int	main(int ac, char **av)
 {
 	int		fd;
-	char	**aux;
+	//int		files;
+	//int		columns;
+	char	**str;
 	t_data	data;
 
+	//atexit(checkLeaks);
 	if (ac != 2)
 		ft_putfinish("WRONG PARAMETERS\n");
 	fd = open(av[1], O_RDONLY);
@@ -33,17 +43,13 @@ int	main(int ac, char **av)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	aux = ft_get_map(fd);
-	int i = 0;
-	while (aux[i])
-	{
-		printf("%s", *aux);
-		i++;
-	}
-	printf("\n");
+	str = ft_get_map(fd);
+	free(str);
+	close(fd);
+	//files = ft_filas(av[1]);
+	//columns = ft_columnas(av[1]);
 	mlx_hook(data.win_ptr, 02, 1L << 0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
-	//system("leaks fdf");
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
 	free(data.mlx_ptr);
@@ -55,22 +61,56 @@ static char	**ft_get_map(int fd)
 	char	*line;
 	char	**str;
 	char	**s;
-	char	**aux;
+	int		i;
 	int		count;
 
 	line = get_next_line(fd);
-	aux = NULL;
+	printf("%i", count);
 	while (line != NULL)
 	{
-		str = ft_split(line, ' ');
-		s = ft_split(*str, ',');
-		aux = s;
 		count = ft_count(line, ' ');
+		str = ft_split(line, ' ');
+		i = 0;
+		while (count > 0)
+		{
+			s = ft_split(str[i], ',');
+			count--;
+			i++;
+		}
 		ft_splitfree(str, count);
-		count = ft_count(*str, ',');
-		ft_splitfree(s, count);
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (aux);
+	return (s);
 }
+
+/*static int	ft_filas(char *av)
+{
+	int		f;
+	int		fd;
+	char	*line;
+
+	fd = open(av, O_RDONLY);
+	line = get_next_line(fd);
+	f = 0;
+	while (line != NULL)
+		f++;
+	close(fd);
+	printf("ESTO ES LA F%i", f);
+	return (f);
+}
+
+static int	ft_columnas(char *av)
+{
+	int		c;
+	int		fd;
+	char	*line;
+
+	fd = open(av, O_RDONLY);
+	line = get_next_line(fd);
+	c = ft_count(line, ' ');
+	c--;
+	close(fd);
+	printf("ESTO ES LA C%i", c);
+	return (c);
+}*/
