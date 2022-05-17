@@ -6,22 +6,19 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/12 17:56:50 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:57:36 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-static int	keyb(int key, t_data *data);
-static int	exkey(t_data *data);
+static char	**ft_get_map(int fd);
 
 int	main(int ac, char **av)
 {
 	int		fd;
-	char	*line;
-	char	**s;
-	char	**str;
+	char	**aux;
 	t_data	data;
 
 	if (ac != 2)
@@ -36,35 +33,44 @@ int	main(int ac, char **av)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	line = get_next_line(fd);
-	while (line != NULL)
+	aux = ft_get_map(fd);
+	int i = 0;
+	while (aux[i])
 	{
-		str = ft_split(line, ' ');
-		s = ft_split(*str, ',');
-		line = get_next_line(fd);
+		printf("%s", *aux);
+		i++;
 	}
+	printf("\n");
 	mlx_hook(data.win_ptr, 02, 1L << 0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
+	//system("leaks fdf");
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
 	free(data.mlx_ptr);
 	return (0);
 }
 
-static int	keyb(int key, t_data *data)
+static char	**ft_get_map(int fd)
 {
-	if (key == 53)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-		exit(1);
-	}
-	return (0);
-}
+	char	*line;
+	char	**str;
+	char	**s;
+	char	**aux;
+	int		count;
 
-static int	exkey(t_data *data)
-{
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
-	exit(1);
+	line = get_next_line(fd);
+	aux = NULL;
+	while (line != NULL)
+	{
+		str = ft_split(line, ' ');
+		s = ft_split(*str, ',');
+		aux = s;
+		count = ft_count(line, ' ');
+		ft_splitfree(str, count);
+		count = ft_count(*str, ',');
+		ft_splitfree(s, count);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (aux);
 }

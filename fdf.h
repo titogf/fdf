@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/12 12:34:36 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:40:39 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_data;
+int			keyb(int key, t_data *data);
+int			exkey(t_data *data);
 void		ft_putfinish(char *str);
 char		**ft_split(char *s, char c);
 int			ft_atoi(const char *str);
 char		*get_next_line(int fd);
 char		*ft_export_line(char *str, char *s);
+int			ft_count(char *s, char c);
+char		**ft_splitfree(char **str, int count);
 char		*ft_leftover(char *str, char *s);
 char		*ft_substr(char *s, int start, int len);
 int			ft_strlen(const char *s);

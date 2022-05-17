@@ -6,15 +6,13 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:40:27 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/11 16:03:37 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:41:44 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	ft_count(char *s, char c);
 static char	**ft_site(char **str, char *s, char c);
-static char	**ft_splitfree(char **str, int count);
 
 char	**ft_split(char *s, char c)
 {
@@ -29,7 +27,7 @@ char	**ft_split(char *s, char c)
 	return (str);
 }
 
-static int	ft_count(char *s, char c)
+int	ft_count(char *s, char c)
 {
 	int	i;
 	int	count;
@@ -78,7 +76,7 @@ static char	**ft_site(char **str, char *s, char c)
 	return (str);
 }
 
-static char	**ft_splitfree(char **str, int count)
+char	**ft_splitfree(char **str, int count)
 {
 	while (count >= 0)
 	{
