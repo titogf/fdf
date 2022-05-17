@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/17 17:42:46 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:11:25 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <stdio.h>
 
 static char	**ft_get_map(int fd);
-//static int	ft_filas(char *av);
-//static int	ft_columnas(char *av);
+static int	ft_filas(int fd);
+static int	ft_columnas(int fd);
 
 void checkLeaks(void)
 {
@@ -25,12 +25,12 @@ void checkLeaks(void)
 int	main(int ac, char **av)
 {
 	int		fd;
-	//int		files;
-	//int		columns;
+	int		files;
+	int		columns;
 	char	**str;
 	t_data	data;
 
-	//atexit(checkLeaks);
+	atexit(checkLeaks);
 	if (ac != 2)
 		ft_putfinish("WRONG PARAMETERS\n");
 	fd = open(av[1], O_RDONLY);
@@ -46,8 +46,9 @@ int	main(int ac, char **av)
 	str = ft_get_map(fd);
 	free(str);
 	close(fd);
-	//files = ft_filas(av[1]);
-	//columns = ft_columnas(av[1]);
+	fd = open(av[1], O_RDONLY);
+	columns = ft_columnas(fd);
+	files = ft_filas(fd);
 	mlx_hook(data.win_ptr, 02, 1L << 0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
 	mlx_loop(data.mlx_ptr);
@@ -65,7 +66,6 @@ static char	**ft_get_map(int fd)
 	int		count;
 
 	line = get_next_line(fd);
-	printf("%i", count);
 	while (line != NULL)
 	{
 		count = ft_count(line, ' ');
@@ -84,33 +84,34 @@ static char	**ft_get_map(int fd)
 	return (s);
 }
 
-/*static int	ft_filas(char *av)
+static int	ft_filas(int fd)
 {
 	int		f;
-	int		fd;
 	char	*line;
 
-	fd = open(av, O_RDONLY);
 	line = get_next_line(fd);
 	f = 0;
 	while (line != NULL)
+	{
 		f++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
 	close(fd);
-	printf("ESTO ES LA F%i", f);
+	printf("ESTO ES LA F:%i", f);
 	return (f);
 }
 
-static int	ft_columnas(char *av)
+static int	ft_columnas(int fd)
 {
 	int		c;
-	int		fd;
 	char	*line;
 
-	fd = open(av, O_RDONLY);
 	line = get_next_line(fd);
 	c = ft_count(line, ' ');
-	c--;
 	close(fd);
-	printf("ESTO ES LA C%i", c);
+	free(line);
+	printf("ESTO ES LA C:%i\n", c);
 	return (c);
-}*/
+}
