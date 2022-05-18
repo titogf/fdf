@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/17 13:40:39 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:51:56 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct s_data
 }	t_data;
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
+char		**ft_get_map(int fd);
+int			ft_rows(int fd);
+int			ft_columns(char *av);
 void		ft_putfinish(char *str);
 char		**ft_split(char *s, char c);
 int			ft_atoi(const char *str);
