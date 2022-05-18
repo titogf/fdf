@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:40:27 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/17 17:45:25 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:43:14 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	**ft_site(char **str, char *s, char c)
 				i++;
 			str[found - 1] = ft_substr(s, start, (i - 1) - start + 1);
 			if (str == NULL)
-				return (ft_splitfree(str, count));
+				return (ft_splitfree(str));
 			found++;
 		}
 		else
@@ -76,12 +76,17 @@ static char	**ft_site(char **str, char *s, char c)
 	return (str);
 }
 
-char	**ft_splitfree(char **str, int count)
+char	**ft_splitfree(char **str)
 {
-	while (count >= 0)
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (NULL);
+	while (str[i] != NULL)
 	{
-		free(str[count]);
-		count--;
+		free(str[i]);
+		i++;
 	}
 	free(str);
 	return (NULL);

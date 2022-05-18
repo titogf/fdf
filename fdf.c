@@ -6,12 +6,11 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/18 13:48:37 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/18 17:34:04 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void	checkleaks(void)
 {
@@ -26,7 +25,7 @@ int	main(int ac, char **av)
 	char	**str;
 	t_data	data;
 
-	//atexit(checkleaks);
+	atexit(checkleaks);
 	if (ac != 2)
 		ft_putfinish("WRONG PARAMETERS\n");
 	fd = open(av[1], O_RDONLY);
@@ -40,8 +39,8 @@ int	main(int ac, char **av)
 		ft_putfinish("WRONG WINDOW\n");
 	}
 	str = ft_get_map(fd);
+	rows = ft_rows(av[1]);
 	columns = ft_columns(av[1]);
-	rows = ft_rows(fd);
 	mlx_hook(data.win_ptr, 02, 1L << 0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
 	mlx_loop(data.mlx_ptr);

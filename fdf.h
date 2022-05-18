@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/18 13:51:56 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/18 17:35:34 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,21 @@
 # include <unistd.h>
 # include <mlx.h>
 
+typedef struct	s_point
+{
+	int		height;;
+	int		color;
+}	t_point;
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_point	**point;
 }	t_data;
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
 char		**ft_get_map(int fd);
-int			ft_rows(int fd);
+int			ft_rows(char *av);
 int			ft_columns(char *av);
 void		ft_putfinish(char *str);
 char		**ft_split(char *s, char c);
@@ -38,7 +44,7 @@ int			ft_atoi(const char *str);
 char		*get_next_line(int fd);
 char		*ft_export_line(char *str, char *s);
 int			ft_count(char *s, char c);
-char		**ft_splitfree(char **str, int count);
+char		**ft_splitfree(char **str);
 char		*ft_leftover(char *str, char *s);
 char		*ft_substr(char *s, int start, int len);
 int			ft_strlen(const char *s);
