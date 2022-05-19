@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/19 18:28:52 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:36:36 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	**ft_map_point(t_data data, char **s, char *av, int	count)
 	char	**s;
 
 	i = 0;
-	height = malloc(sizeof (char *) ft_rows(av) * ft_columns(av));
-	color = malloc(sizeof (char *) ft_rows(av) * ft_columns(av));
-	height[i][count] = ft_atoi(s[0]);
+	data.point.height = malloc(sizeof (char *) ft_rows(av) * ft_columns(av));
+	data.point.color = malloc(sizeof (char *) ft_rows(av) * ft_columns(av));
+	data.point.height[i][count] = ft_atoi(s[0]);
 	if (ft_atoi(s[1]) == -1)
-		color[i][count] = NULL;
+		data.point.color[i][count] = NULL;
 	else
-		color[i][count] = ft_atoi(s[1]);
+		data.point.color[i][count] = ft_atoi(s[1]);
 	if (count == 0)
 		i++;
 }
