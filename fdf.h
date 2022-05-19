@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/18 17:35:34 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:28:54 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 
 # define BUFFER_SIZE 100
-# define WIDE 600 //altura ventana
-# define HEIGHT 900 //anchura ventana
+# define HEIGHT 600 //altura ventana
+# define WIDE 900 //anchura ventana
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -24,7 +24,7 @@
 
 typedef struct	s_point
 {
-	int		height;;
+	int		height;
 	int		color;
 }	t_point;
 typedef struct s_data
@@ -35,12 +35,13 @@ typedef struct s_data
 }	t_data;
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
-char		**ft_get_map(int fd);
+char		**ft_get_map(t_data data , char *av, int fd);
+int			**ft_map_point(t_data data, char **str, char *av, int count);
 int			ft_rows(char *av);
 int			ft_columns(char *av);
 void		ft_putfinish(char *str);
 char		**ft_split(char *s, char c);
-int			ft_atoi(const char *str);
+int			ft_atoi(char *str);
 char		*get_next_line(int fd);
 char		*ft_export_line(char *str, char *s);
 int			ft_count(char *s, char c);

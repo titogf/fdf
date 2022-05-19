@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/18 13:59:53 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:25:14 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putfinish(char *str)
 	exit(1);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	unsigned long long int	result;
 	int						sig;
@@ -34,6 +34,8 @@ int	ft_atoi(const char *str)
 	i = 0;
 	sig = 1;
 	result = 0;
+	if (str == NULL)
+		return (-1);
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
 		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
