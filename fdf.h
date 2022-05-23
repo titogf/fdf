@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/19 18:28:54 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/23 13:05:46 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 
 # define BUFFER_SIZE 100
-# define HEIGHT 600 //altura ventana
-# define WIDE 900 //anchura ventana
+# define HEIGHT 900 //altura ventana
+# define WIDE 1200 //anchura ventana
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -31,12 +31,14 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		**color;
+	int		**height;
 	t_point	**point;
 }	t_data;
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
 char		**ft_get_map(t_data data , char *av, int fd);
-int			**ft_map_point(t_data data, char **str, char *av, int count);
+int			**ft_map_point(t_data data, char **s, char *av, int count);
 int			ft_rows(char *av);
 int			ft_columns(char *av);
 void		ft_putfinish(char *str);
