@@ -27,7 +27,7 @@ void	ft_putfinish(char *str)
 	exit(1);
 }
 
-int	ft_hex(char *str, int base)
+int	ft_atoi_base(char *str, int base)
 {
 	int	i;
 	int	nb;
