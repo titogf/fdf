@@ -37,13 +37,13 @@ typedef struct s_data
 }	t_data;
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
-char		**ft_get_map(t_data data , char *av, int fd);
+char		**ft_get_map(t_data data, char *av, int fd);
 int			**ft_map_point(t_data data, char **s, char *av, int count);
 int			ft_rows(char *av);
 int			ft_columns(char *av);
 void		ft_putfinish(char *str);
 char		**ft_split(char *s, char c);
-int			ft_atoi(char *str);
+int			ft_atoi_base(char *str, int base);
 char		*get_next_line(int fd);
 char		*ft_export_line(char *str, char *s);
 int			ft_count(char *s, char c);

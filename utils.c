@@ -12,6 +12,8 @@
 
 #include "fdf.h"
 
+static int	ft_return_nb(char *str, int i, int base);
+
 void	ft_putfinish(char *str)
 {
 	int	i;
@@ -25,30 +27,44 @@ void	ft_putfinish(char *str)
 	exit(1);
 }
 
-int	ft_atoi(char *str)
+int	ft_hex(char *str, int base)
 {
-	unsigned long long int	result;
-	int						sig;
-	int						i;
+	int	i;
+	int	nb;
+	int	sig;
 
 	i = 0;
+	nb = 0;
 	sig = 1;
-	result = 0;
-	if (str == NULL)
-		return (-1);
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sig = sig * (-1);
+			sig = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i])
 	{
-		result = (str[i] - 48) + (result * 10);
+		nb = nb * base;
+		nb = nb + ft_return_nb(str, i, base);
 		i++;
 	}
-	return (result * sig);
+	return (nb * sig);
+}
+
+static int	ft_return_nb(char *str, int i, int base)
+{
+	char	*hex1;
+	char	*hex2;
+	int		j;
+
+	j = 0;
+	hex1 = "0123456789abcdef";
+	hex2 = "0123456789ABCDEF";
+	while (j <= base)
+	{
+		if (str[i] == hex1[j] || str[i] == hex2[j])
+			return (j);
+		j++;
+	}
+	return (-1);
 }

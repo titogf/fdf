@@ -40,7 +40,7 @@ char	**ft_get_map(t_data data, char *av, int fd)
 	return (s);
 }
 
-int	**ft_map_point(t_data data, char **s, char *av, int	count)
+int	**ft_map_point(t_data data, char **s, char *av, int count)
 {
 	static int	i;
 	char		*argv;
@@ -50,8 +50,8 @@ int	**ft_map_point(t_data data, char **s, char *av, int	count)
 	data.color = malloc(sizeof ft_rows(argv) * ft_columns(argv));
 	if (!i)
 		i = 0;
-	data.color[i][count] = ft_atoi(s[1]);
-	data.height[i][count] = ft_atoi(s[0]);
+	data.color[i][count] = ft_atoi_base(s[1], 16);
+	data.height[i][count] = ft_atoi_base(s[0], 10);
 	if (count == 0)
 		i++;
 	return (data.height);
@@ -89,4 +89,3 @@ int	ft_columns(char *av)
 	free(line);
 	return (c);
 }
-
