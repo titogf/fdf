@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/19 18:35:47 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:41:02 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	//atexit(checkleaks);
-	if (ac != 2)
-		ft_putfinish("WRONG PARAMETERS\n");
 	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		ft_putfinish("WRONG MAP");
+	if (ac != 2 || fd < 0)
+		ft_putfinish("WRONG PARAMETERS\n");
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDE, HEIGHT, "FDF");
 	if (data.win_ptr == NULL)

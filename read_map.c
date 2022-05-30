@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/23 13:16:29 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/30 16:30:39 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	**ft_get_map(t_data data, char *av, int fd)
 		while (count >= 0)
 		{
 			s = ft_split(str[count], ',');
-			printf("%s\n", s[1]);
 			ft_map_point(data, s, av, count);
 			ft_splitfree(s);
 			count--;
@@ -43,15 +42,34 @@ char	**ft_get_map(t_data data, char *av, int fd)
 int	**ft_map_point(t_data data, char **s, char *av, int count)
 {
 	static int	i;
-	char		*argv;
+	int			r;
+	int			fd;
+	int			row;
 
-	argv = av;
-	data.height = malloc(sizeof ft_rows(argv) * ft_columns(argv));
-	data.color = malloc(sizeof ft_rows(argv) * ft_columns(argv));
-	if (!i)
+	row = ft_rows(av);
+	fd = open(av, O_RDONLY);
+	if (get_next_line(fd) != NULL)
+	{
+		//free(get_next_line(fd));
+		while (get_next_line(fd) != NULL)
+		{
+			//free(get_next_line(fd));
+			get_next_line(fd);
+		}
+		data.height = malloc(sizeof(int *) * row);
+		data.color = malloc(sizeof(int *) * row);
+		r = 0;
 		i = 0;
-	data.color[i][count] = ft_atoi_base(s[1], 16);
+		while(r < row)
+		{
+			data.height[r] = malloc(sizeof(int *) * ft_columns(av));
+			data.color[r] = malloc(sizeof(int *) * ft_columns(av));
+			r++;
+		}
+		free(get_next_line(fd));
+	}
 	data.height[i][count] = ft_atoi_base(s[0], 10);
+	data.color[i][count] = ft_atoi_base(s[1], 16);
 	if (count == 0)
 		i++;
 	return (data.height);

@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/23 13:05:46 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:25:02 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <mlx.h>
 
-typedef struct	s_point
+typedef struct s_point
 {
 	int		height;
 	int		color;

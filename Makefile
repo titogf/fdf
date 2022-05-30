@@ -6,15 +6,16 @@ CC = gcc
 
 OBJS = $(SRC:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra -Imlx
+FLAGS = -Wall -Werror -Wextra -Imlx -g3 -fsanitize=address
 
 MINILIBX = minilibx/libmlx.a
+MINIFLG = -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C minilibx
-	$(CC) $(FLAGS) $(OBJS) $(MINILIBX) -o $(NAME) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(MINILIBX) $(MINIFLG) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@

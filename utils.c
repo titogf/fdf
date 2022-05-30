@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/23 13:16:22 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:56:26 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,13 @@ int	ft_atoi_base(char *str, int base)
 	int	nb;
 	int	sig;
 
+	if (!str || !str[0])
+		return (-1);
 	i = 0;
 	nb = 0;
 	sig = 1;
+	if (str[0] == 0 && str[1] == 'x')
+		i = 2;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
