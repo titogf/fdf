@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/31 14:48:37 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:19:06 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	checkleaks(void)
 int	main(int ac, char **av)
 {
 	int		fd;
-	char	**str;
 	t_data	data;
 
 	//atexit(checkleaks);
@@ -34,8 +33,8 @@ int	main(int ac, char **av)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	ft_malloc(data, av[1], fd);
-	str = ft_get_map(data, fd);
+	ft_malloc(&data, av[1]);
+	ft_get_map(&data, fd);
 	mlx_hook(data.win_ptr, 02, 1L << 0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
 	mlx_loop(data.mlx_ptr);
