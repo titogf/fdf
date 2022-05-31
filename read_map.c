@@ -6,19 +6,53 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/30 17:30:19 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:51:27 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	**ft_get_map(t_data data, char *av, int fd)
+int	ft_malloc(t_data data, char *av, int fd)
+{
+	int		i;
+	int		row;
+	int		colum;
+	char	*line;
+
+	row = ft_rows(av);
+	colum = ft_columns(av);
+	line = get_next_line(fd);
+	if (line != NULL)
+	{
+		while (line != NULL)
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
+		data.height = malloc(sizeof(int *) * row);
+		data.color = malloc(sizeof(int *) * row);
+		i = -1;
+		while(++i < row)
+		{
+			printf("->%i\n", i);
+			data.height[i] = malloc(sizeof(int *) * colum);
+			data.color[i] = malloc(sizeof(int *) * colum);
+		}
+		free(line);
+	}
+	close(fd);
+	return (0);
+}
+
+char	**ft_get_map(t_data data, int fd)
 {
 	char	*line;
 	char	**str;
 	char	**s;
+	int		i;
 	int		count;
 
+	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -27,42 +61,21 @@ char	**ft_get_map(t_data data, char *av, int fd)
 		while (count >= 0)
 		{
 			s = ft_split(str[count], ',');
-			ft_map_point(data, s, av, count);
+			ft_map_point(data, s, i, count);
 			ft_splitfree(s);
 			count--;
 		}
 		ft_splitfree(str);
 		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	close(fd);
 	return (s);
 }
 
-int	**ft_map_point(t_data data, char **s, char *av, int count)
+int	**ft_map_point(t_data data, char **s, int i, int count)
 {
-	static int	i;
-	int			fd;
-	int			row;
-
-	row = ft_rows(av);
-	fd = open(av, O_RDONLY);
-	if (get_next_line(fd) != NULL)
-	{
-		free(get_next_line(fd));
-		while (get_next_line(fd) != NULL)
-			free(get_next_line(fd));
-		data.height = malloc(sizeof(int *) * row);
-		data.color = malloc(sizeof(int *) * row);
-		i = -1;
-		while(++i < row)
-		{
-			data.height[i] = malloc(sizeof(int *) * ft_columns(av));
-			data.color[i] = malloc(sizeof(int *) * ft_columns(av));
-		}
-		i = 0;
-		free(get_next_line(fd));
-	}
 	data.height[i][count] = ft_atoi_base(s[0], 10);
 	data.color[i][count] = ft_atoi_base(s[1], 16);
 	if (count == 0)
@@ -86,6 +99,7 @@ int	ft_rows(char *av)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	printf("%i\n", f);
 	return (f);
 }
 
@@ -100,5 +114,6 @@ int	ft_columns(char *av)
 	c = ft_count(line, ' ');
 	close(fd);
 	free(line);
+	printf("%i\n", c);
 	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/30 17:30:01 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:48:37 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	main(int ac, char **av)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	str = ft_get_map(data, av[1], fd);
+	ft_malloc(data, av[1], fd);
+	str = ft_get_map(data, fd);
 	mlx_hook(data.win_ptr, 02, 1L << 0, &keyb, &data);
 	mlx_hook(data.win_ptr, 17, 1L < 17, &exkey, &data);
 	mlx_loop(data.mlx_ptr);
