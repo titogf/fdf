@@ -9,7 +9,7 @@ OBJS = $(SRC:.c=.o)
 FLAGS = -Wall -Werror -Wextra -Imlx -g3 -fsanitize=address
 
 MINILIBX = minilibx/libmlx.a
-MINIFLG = -lmlx -framework OpenGL -framework AppKit
+MINIFLG = -L./minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 

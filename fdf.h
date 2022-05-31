@@ -20,28 +20,23 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <mlx.h>
+# include "minilibx/mlx.h"
 
-typedef struct s_point
-{
-	int		height;
-	int		color;
-}	t_point;
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		rows;
+	int		columns;
 	int		**color;
 	int		**height;
-	t_point	**point;
 }	t_data;
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
-int			ft_malloc(t_data *data, char *av);
-char		**ft_get_map(t_data *data, int fd, char *line);
+int			ft_malloc(t_data *data, int fd);
+char		**ft_get_map(t_data *data, char *av);
 int			ft_map_point(t_data *data, char **s, int i, int count);
-int			ft_rows(char *av);
-int			ft_columns(char *av);
+int			ft_matrizlen(t_data *data, int fd);
 void		ft_putfinish(char *str);
 char		**ft_split(char *s, char c);
 int			ft_atoi_base(char *str, int base);

@@ -12,14 +12,17 @@
 
 #include "fdf.h"
 
-int	ft_malloc(t_data *data, char *av)
+int	ft_malloc(t_data *data, int fd)
 {
 	int		i;
 	int		row;
 	int		colum;
 
-	row = ft_rows(av);
-	colum = ft_columns(av);
+	ft_matrizlen(data, fd);
+	row = data->rows;
+	colum = data->columns;
+	printf("---->%i\n", data->rows);
+	printf("->%i\n", data->columns);
 	data->height = malloc(sizeof(int *) * row);
 	data->color = malloc(sizeof(int *) * row);
 	i = -1;
@@ -31,13 +34,17 @@ int	ft_malloc(t_data *data, char *av)
 	return (0);
 }
 
-char	**ft_get_map(t_data *data, int fd, char *line)
+char	**ft_get_map(t_data *data, char *av)
 {
 	char	**str;
 	char	**s;
 	int		i;
 	int		count;
+	int		fd;
+	char		*line;
 
+	fd = open(av, O_RDONLY);
+	line = get_next_line(fd);
 	i = 0;
 	while (line != NULL)
 	{
@@ -68,37 +75,23 @@ int	ft_map_point(t_data *data, char **s, int i, int count)
 	return (0);
 }
 
-int	ft_rows(char *av)
+int	ft_matrizlen(t_data *data, int fd)
 {
-	int		f;
-	int		fd;
 	char	*line;
 
-	fd = open(av, O_RDONLY);
 	line = get_next_line(fd);
-	f = 0;
-	while (line != NULL)
+	if (line != NULL)
 	{
-		f++;
-		free(line);
-		line = get_next_line(fd);
+		data->columns = ft_count(line, ' ');
+		data->rows = 0;
+		while (line != NULL)
+		{
+			printf("%s\n", line);
+			data->rows++;
+			free(line);
+			line = get_next_line(fd);
+		}
 	}
 	close(fd);
-	printf("-->%i\n", f);
-	return (f);
-}
-
-int	ft_columns(char *av)
-{
-	int		c;
-	int		fd;
-	char	*line;
-
-	fd = open(av, O_RDONLY);
-	line = get_next_line(fd);
-	c = ft_count(line, ' ');
-	close(fd);
-	free(line);
-	printf("%i\n", c);
-	return (c);
+	return (0);
 }
