@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/31 16:37:31 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:59:21 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,20 @@ int	ft_malloc(t_data *data, char *av)
 	i = -1;
 	while(++i < row)
 	{
-		printf("->%i\n", i);
 		data->height[i] = malloc(sizeof(int *) * colum);
 		data->color[i] = malloc(sizeof(int *) * colum);
 	}
 	return (0);
 }
 
-char	**ft_get_map(t_data *data, int fd)
+char	**ft_get_map(t_data *data, int fd, char *line)
 {
-	char	*line;
 	char	**str;
 	char	**s;
 	int		i;
 	int		count;
 
 	i = 0;
-	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		count = ft_count(line, ' ') - 1;
@@ -87,6 +84,7 @@ int	ft_rows(char *av)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	printf("-->%i\n", f);
 	return (f);
 }
 
@@ -101,5 +99,6 @@ int	ft_columns(char *av)
 	c = ft_count(line, ' ');
 	close(fd);
 	free(line);
+	printf("%i\n", c);
 	return (c);
 }

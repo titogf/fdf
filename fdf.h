@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/31 16:32:40 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:51:19 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_data
 int			keyb(int key, t_data *data);
 int			exkey(t_data *data);
 int			ft_malloc(t_data *data, char *av);
-char		**ft_get_map(t_data *data, int fd);
+char		**ft_get_map(t_data *data, int fd, char *line);
 int			ft_map_point(t_data *data, char **s, int i, int count);
 int			ft_rows(char *av);
 int			ft_columns(char *av);
