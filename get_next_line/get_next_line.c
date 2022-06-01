@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:14:03 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/31 18:10:58 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:54:31 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ char	*ft_export_line(char *str, char *s)
 	if (string == NULL)
 		return (NULL);
 	while (string[i] != '\n' && string[i])
-		i++;
-	if (string[i] == '\n')
 		i++;
 	buff = ft_substr(string, 0, i);
 	if (!ft_strlen(buff))

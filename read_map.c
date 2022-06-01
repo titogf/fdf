@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/01 14:22:42 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:07:01 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,9 @@ char	**ft_get_map(t_data *data, char *av, int fd)
 	{
 		count = ft_count(line, ' ');
 		str = ft_split(line, ' ');
-		int o = 0;
-		while(str[o])
-		{
-			printf("SI ---> %s\n", str[o]);
-			o++;
-		}
 		while (count-- > 0)
 		{
 			s = ft_split(str[count], ',');
-			o = 0;
-			while (s[o])
-			{
-				printf("NO = %s\n", s[o]);
-				o++;
-			}
 			ft_map_point(data, s, i, count);
 			ft_splitfree(s);
 		}
@@ -75,12 +63,8 @@ char	**ft_get_map(t_data *data, char *av, int fd)
 
 int	ft_map_point(t_data *data, char **s, int i, int count)
 {
-	//printf("LA S %s\n", s[0]);
-	//printf("---> %i\n", ft_atoi_base(s[0], 10));
 	data->height[i][count] = ft_atoi_base(s[0], 10);
 	data->color[i][count] = ft_atoi_base(s[1], 16);
-	//printf("ALTURA = %i\n", data->height[i][count]);
-	//printf("COLOR = %i\n", data->color[i][count]);
 	if (count == 0)
 		i++;
 	return (0);
@@ -97,7 +81,7 @@ int	ft_matrizlen(t_data *data, int fd)
 		data->rows = 0;
 		while (line != NULL)
 		{
-			//printf("%s\n", line);
+			printf("%s\n", line);
 			data->rows++;
 			free(line);
 			line = get_next_line(fd);
