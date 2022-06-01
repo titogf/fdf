@@ -30,4 +30,4 @@ fclean: clean
 re: fclean all
 
 n:
-	norminette
+	norminette $(SRC)
