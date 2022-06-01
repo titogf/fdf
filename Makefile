@@ -6,7 +6,7 @@ CC = gcc
 
 OBJS = $(SRC:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra -Imlx -g3 -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -Imlx
 
 MINILIBX = minilibx/libmlx.a
 MINIFLG = -L./minilibx -lmlx -framework OpenGL -framework AppKit

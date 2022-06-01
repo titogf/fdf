@@ -6,13 +6,25 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:37:44 by gfernand          #+#    #+#             */
-/*   Updated: 2022/05/30 14:12:36 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:33:25 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	keyb(int key, t_data *data)
+static int	keyb(int key, t_data *data);
+static int	exkey(t_data *data);
+
+void	ft_window(t_data *data)
+{
+	mlx_hook(data->win_ptr, 02, 1L << 0, &keyb, data);
+	mlx_hook(data->win_ptr, 17, 1L < 17, &exkey, data);
+	mlx_loop(data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	free(data->mlx_ptr);
+}
+
+static int	keyb(int key, t_data *data)
 {
 	if (key == 53)
 	{
@@ -23,7 +35,7 @@ int	keyb(int key, t_data *data)
 	return (0);
 }
 
-int	exkey(t_data *data)
+static int	exkey(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;

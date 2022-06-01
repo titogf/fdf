@@ -6,13 +6,16 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/01 15:07:01 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:32:25 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_malloc(t_data *data, int fd)
+static int	ft_matrizlen(t_data *data, int fd);
+static int	ft_map_point(t_data *data, char **s, int i, int count);
+
+void	ft_malloc(t_data *data, int fd)
 {
 	int		i;
 	int		row;
@@ -29,10 +32,9 @@ int	ft_malloc(t_data *data, int fd)
 		data->height[i] = malloc(sizeof(int *) * colum);
 		data->color[i] = malloc(sizeof(int *) * colum);
 	}
-	return (0);
 }
 
-char	**ft_get_map(t_data *data, char *av, int fd)
+void	ft_get_map(t_data *data, char *av, int fd)
 {
 	char	**str;
 	char	**s;
@@ -58,10 +60,9 @@ char	**ft_get_map(t_data *data, char *av, int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (s);
 }
 
-int	ft_map_point(t_data *data, char **s, int i, int count)
+static int	ft_map_point(t_data *data, char **s, int i, int count)
 {
 	data->height[i][count] = ft_atoi_base(s[0], 10);
 	data->color[i][count] = ft_atoi_base(s[1], 16);
@@ -70,7 +71,7 @@ int	ft_map_point(t_data *data, char **s, int i, int count)
 	return (0);
 }
 
-int	ft_matrizlen(t_data *data, int fd)
+static int	ft_matrizlen(t_data *data, int fd)
 {
 	char	*line;
 
