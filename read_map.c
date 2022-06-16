@@ -12,25 +12,32 @@
 
 #include "fdf.h"
 
-static int	ft_matrizlen(t_data *data, int fd);
-static int	ft_map_point(t_data *data, char **s, int i, int count);
-
 void	ft_malloc(t_data *data, int fd)
 {
 	int		i;
-	int		row;
-	int		colum;
+	char	*line;
 
-	ft_matrizlen(data, fd);
-	row = data->rows;
-	colum = data->columns;
-	data->height = malloc(sizeof(int *) * row);
-	data->color = malloc(sizeof(int *) * row);
-	i = -1;
-	while (++i < row)
+	line = get_next_line(fd);
+	if (line != NULL)
 	{
-		data->height[i] = malloc(sizeof(int *) * colum);
-		data->color[i] = malloc(sizeof(int *) * colum);
+		data->columns = ft_count(line, ' ');
+		data->rows = 0;
+		while (line != NULL)
+		{
+			printf("%s\n", line);
+			data->rows++;
+			free(line);
+			line = get_next_line(fd);
+		}
+	}
+	close(fd);
+	data->height = malloc(sizeof(int *) * data->rows);
+	data->color = malloc(sizeof(int *) * data->rows);
+	i = -1;
+	while (++i < data->rows)
+	{
+		data->height[i] = malloc(sizeof(int *) * data->columns);
+		data->color[i] = malloc(sizeof(int *) * data->columns);
 	}
 }
 
@@ -52,7 +59,8 @@ void	ft_get_map(t_data *data, char *av, int fd)
 		while (count-- > 0)
 		{
 			s = ft_split(str[count], ',');
-			ft_map_point(data, s, i, count);
+			data->height[i][count] = ft_atoi_base(s[0], 10);
+			data->color[i][count] = ft_atoi_base(s[1], 16);
 			ft_splitfree(s);
 		}
 		ft_splitfree(str);
@@ -60,34 +68,4 @@ void	ft_get_map(t_data *data, char *av, int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
-}
-
-static int	ft_map_point(t_data *data, char **s, int i, int count)
-{
-	data->height[i][count] = ft_atoi_base(s[0], 10);
-	data->color[i][count] = ft_atoi_base(s[1], 16);
-	if (count == 0)
-		i++;
-	return (0);
-}
-
-static int	ft_matrizlen(t_data *data, int fd)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	if (line != NULL)
-	{
-		data->columns = ft_count(line, ' ');
-		data->rows = 0;
-		while (line != NULL)
-		{
-			printf("%s\n", line);
-			data->rows++;
-			free(line);
-			line = get_next_line(fd);
-		}
-	}
-	close(fd);
-	return (0);
 }
