@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/01 15:32:25 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:07:33 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,21 @@ void	ft_get_map(t_data *data, char *av, int fd)
 	char	**str;
 	char	**s;
 	char	*line;
-	int		i;
-	int		count;
+	int		y;
+	int		x;
 
 	fd = open(av, O_RDONLY);
 	line = get_next_line(fd);
-	i = -1;
-	while (line != NULL && ++i >= 0)
+	y = -1;
+	while (line != NULL && ++y >= 0)
 	{
-		count = ft_count(line, ' ');
+		x = ft_count(line, ' ');
 		str = ft_split(line, ' ');
-		while (count-- > 0)
+		while (x-- > 0)
 		{
-			s = ft_split(str[count], ',');
-			data->height[i][count] = ft_atoi_base(s[0], 10);
-			data->color[i][count] = ft_atoi_base(s[1], 16);
+			s = ft_split(str[x], ',');
+			data->height[y][x] = ft_atoi_base(s[0], 10);
+			data->color[y][x] = ft_atoi_base(s[1], 16);
 			ft_splitfree(s);
 		}
 		ft_splitfree(str);
