@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRC = fdf.c close_map.c read_map.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRC = prueba.c fdf.c close_map.c read_map.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 CC = gcc
 

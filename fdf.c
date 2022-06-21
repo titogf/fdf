@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/01 15:34:43 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:38:04 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	main(int ac, char **av)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
+	ft_prueba(&data);
 	ft_malloc(&data, fd);
 	ft_get_map(&data, av[1], fd);
+	ft_draw(&data);
 	ft_window(&data);
 	return (0);
 }
