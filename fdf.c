@@ -35,10 +35,10 @@ int	main(int ac, char **av)
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	ft_prueba(&data);
 	ft_malloc(&data, fd);
 	ft_get_map(&data, av[1], fd);
 	ft_draw(&data);
+	ft_prueba(&data);
 	ft_window(&data);
 	return (0);
 }

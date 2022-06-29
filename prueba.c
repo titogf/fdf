@@ -17,6 +17,7 @@ void	ft_prueba(t_data *data)
 	int	x;
 	int	i;
 
+	x = data->color[1][1];
 	x = 300;
 	while (x <= 900)
 	{

@@ -27,9 +27,9 @@ void	ft_draw(t_data *data)
 	y = 0;
 	while (data->height[y] && y < data->rows)
 	{
-		printf("2\n");
 		x = 0;
-		while (data->height[y][x] && x < data->columns)
+		printf("†\n");
+		while ((data->height[y][x] || data->height[y][x] == 0) && x < data->columns)
 		{
 			printf("----->%i\n", data->height[y][x]);
 			if (data->color[y][x] == -1)
