@@ -19,11 +19,8 @@ void	ft_draw(t_data *data)
 	int	x;
 	int	y;
 
-	lenx = data->columns / 2;
-	leny = data->rows / 2;
-	lenx = WIDE / 2 - lenx;
-	leny = HEIGHT / 2 - leny;
-	printf("%i\n", lenx);
+	data->posx = WIDE / 2 - data->columns * 4;
+	data->posy = HEIGHT / 2 - data->rows * 4;
 	y = 0;
 	while (data->height[y] && y < data->rows)
 	{
@@ -32,9 +29,11 @@ void	ft_draw(t_data *data)
 		while ((data->height[y][x] || data->height[y][x] == 0) && x < data->columns)
 		{
 			printf("->%i", data->height[y][x]);
+			lenx = data->posx + x * 8;
+			leny = data->posy + y * 8 - data->height[y][x];
 			if (data->color[y][x] == -1)
 				data->color[y][x] = 16777215;
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx - x, leny - y, data->color[y][x]);
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);
 			x++;
 		}
 		y++;

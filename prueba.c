@@ -17,7 +17,22 @@ void	ft_prueba(t_data *data)
 	int	x;
 	int	i;
 
-	x = data->color[1][1];
+	i = 0;
+	x = WIDE / 2;
+	while (i <= HEIGHT)
+	{
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, i, 16777215);
+		i++;
+	}
+	i = HEIGHT / 2;
+	x = 0;
+	while (x <= WIDE)
+	{
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, i, 16777215);
+		x++;
+	}
+
+	/*x = data->color[1][1];
 	x = 300;
 	while (x <= 900)
 	{
@@ -39,5 +54,5 @@ void	ft_prueba(t_data *data)
 			x++;
 		}
 		i += 50;
-	}
+	}*/
 }

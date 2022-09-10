@@ -31,6 +31,8 @@ typedef struct s_data
 	int		**height;
 	int		rows;
 	int		columns;
+	int		posx;
+	int		posy;
 }	t_data;
 void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, int fd);
