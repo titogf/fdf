@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/12 14:07:14 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:13:11 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	ft_first_pixel(t_data *data)
 		data->location = 4;
 	if (data->columns > 159 && data->columns < 260)
 		data->location = 3;
+	if (data->columns > 259)
+		data->location = 1;
 }
 
 void	ft_draw(t_data *data)
