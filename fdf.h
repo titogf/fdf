@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/21 16:43:24 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:23:46 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		**color;
 	int		**height;
+	int		**color;
 	int		rows;
 	int		columns;
+	int		location;
 	int		posx;
 	int		posy;
 }	t_data;
