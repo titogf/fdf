@@ -6,18 +6,16 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/12 14:13:11 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:38:23 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//void	ft_line_to_pixel(t_data *data);
 static void	ft_first_pixel(t_data *data);
 
 static void	ft_first_pixel(t_data *data)
 {
-	printf("columnassss %i", data->columns);
 	if (data->columns < 30)
 		data->location = 20;
 	if (data->columns > 29 && data->columns < 60)
@@ -56,15 +54,43 @@ void	ft_draw(t_data *data)
 			leny = data->posy + y * data->location - data->height[y][x];
 			if (data->color[y][x] == -1)
 				data->color[y][x] = 16777215;
+			data->brsh.x0 = lenx;
+			data->brsh.y0 = leny;
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);//hacer una funcion de put
+			data->brsh.x1 = data->posx + (x + 1) * data->location;
+			data->brsh.y1 = leny;
 			mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);
+			ft_bresenham(data);
 			x++;
 		}
 		y++;
 	}
 }
 
-/*void	ft_line_to_pixel(t_data *data, int lenx, int leny);
+void	ft_bresenham(t_data	*data, int	x, int	y)
 {
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);
-}*/
+	int	dx;
+	int	dy;
+	int	p;
 
+	dx = x1 - x0;
+	dy = y1 - y0;
+	p = 2 * dy0 - dx0;
+
+	while (x0 < x1)
+	{
+		if (p >= 0)
+		{
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
+			y0 = y0 + 1;
+			p = p + 2 * dy - 2 * dx;
+		}
+		else
+		{
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
+			p = p + 2 * dy;
+		}
+		x = x + 1;
+	}
+
+}

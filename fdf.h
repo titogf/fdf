@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/12 13:23:46 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:12:33 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include <unistd.h>
 # include "minilibx/mlx.h"
 
+typedef struct	s_brsh
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
+}	t_brsh;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -34,7 +42,9 @@ typedef struct s_data
 	int		location;
 	int		posx;
 	int		posy;
+	t_brsh	brsh;
 }	t_data;
+
 void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, int fd);
 void		ft_get_map(t_data *data, char *av, int fd);
