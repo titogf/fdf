@@ -13,7 +13,7 @@
 #include "fdf.h"
 
 static void	ft_first_pixel(t_data *data);
-static void	ft_bresenham(t_data *data);
+static void	ft_bresenham(t_data *data, int x, int y);
 
 static void	ft_first_pixel(t_data *data)
 {
@@ -57,18 +57,18 @@ void	ft_draw(t_data *data)
 				data->color[y][x] = 16777215;
 			//data->brsh.x0 = lenx;
 			//data->brsh.y0 = leny;
-			//mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);//hacer una funcion de put
+			ft_putpixel(data, x, y);//mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);//hacer una funcion de put
 			data->brsh.x1 = data->posx + (x + 1) * data->location;
 			data->brsh.y1 = data->brsh.y0;
-			//mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);
-			ft_bresenham(data);
+			ft_putpixel(data, x, y);//mlx_pixel_put(data->mlx_ptr, data->win_ptr, lenx, leny, data->color[y][x]);//hacer una funcion de put
+			ft_bresenham(data, x, y);
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	ft_bresenham(t_data *data)
+static void	ft_bresenham(t_data *data, int x, int y)
 {
 	int	dx;
 	int	dy;
@@ -81,12 +81,14 @@ static void	ft_bresenham(t_data *data)
 	{
 		if (p >= 0)
 		{
+			ft_putpixel(data, x, y);
 			//mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
 			data->brsh.y0 = data->brsh.y0 + 1;
 			p = p + 2 * dy - 2 * dx;
 		}
 		else
 		{
+			ft_putpixel(data, x, y);
 			//mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
 			p = p + 2 * dy;
 		}

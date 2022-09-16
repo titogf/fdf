@@ -23,7 +23,7 @@
 # include <unistd.h>
 # include "minilibx/mlx.h"
 
-typedef struct	s_brsh
+typedef struct s_brsh
 {
 	int	x0;
 	int	x1;
@@ -54,6 +54,7 @@ void		ft_prueba(t_data *data);
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
 
+void		ft_putpixel(t_data *data, int x, int y);
 int			ft_atoi_base(char *str, int base);
 void		ft_putfinish(char *str);
 
