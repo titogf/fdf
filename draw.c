@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/19 18:02:07 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:01:37 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_draw(t_data *data)
 				data->color[y][x] = 16777215;
 			ft_putpixel(data, x, y);
 			data->brsh.x1 = data->posx + (x + 1) * data->location;
-			data->brsh.y1 = data->brsh.y0; //- data->height[y][x + 1];
+			data->brsh.y1 = data->brsh.y0;//- data->height[y][x + 1];
 			ft_putpixel(data, x, y);
 			ft_bresenham(data, x, y);
 			x++;
