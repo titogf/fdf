@@ -49,12 +49,8 @@ void	ft_draw(t_data *data)
 		{
 			data->brsh.x0 = data->posx + x * data->location;
 			data->brsh.y0 = data->posy + y * data->location - data->height[y][x] * data->location;
-			if (data->color[y][x] == -1)
-				data->color[y][x] = 16777215;
-			ft_putpixel(data, x, y);
 			data->brsh.x1 = data->posx + (x + 1) * data->location;
-			data->brsh.y1 = data->brsh.y0;//- data->height[y][x + 1];
-			ft_putpixel(data, x, y);
+			data->brsh.y1 = data->brsh.y0; //- data->height[y][x + 1];
 			ft_bresenham(data, x, y);
 			x++;
 		}

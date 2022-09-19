@@ -12,6 +12,8 @@
 
 #include "fdf.h"
 
+static void	ft_put_color(t_data *data);
+
 void	ft_malloc(t_data *data, int fd)
 {
 	int		i;
@@ -67,5 +69,25 @@ void	ft_get_map(t_data *data, char *av, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	ft_put_color(data);
 	close(fd);
+}
+
+static void	ft_put_color(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->color[y] && y < data->rows)
+	{
+		x = 0;
+		while (x < data->columns)
+		{
+			if (data->color[y][x] == -1)
+				data->color[y][x] = 16777215;
+			x++;
+		}
+		y++;
+	}
 }
