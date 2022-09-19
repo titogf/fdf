@@ -4,6 +4,7 @@ paisaje enlazando varios puntos (x, y, z) a través de segmentos. Las coordenada
 este paisaje se guardan en un archivo pasado como parámetro a tu programa. Aquí tienes
 un ejemplo:
 $>cat 42.fdf
+
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 0  0  10 10 0  0  10 10 0  0  0  10 10 10 10 10 0  0  0
