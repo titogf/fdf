@@ -12,10 +12,10 @@
 
 #include "fdf.h"
 
-static void	ft_first_pixel(t_data *data);
-static void	ft_bresenham(t_data *data, int x, int y);
+static void	ft_len_map(t_data *data);
+//static void	ft_bresenham(t_data *data, int x, int y);
 
-static void	ft_first_pixel(t_data *data)
+static void	ft_len_map(t_data *data)
 {
 	if (data->columns < 30)
 		data->location = 20;
@@ -38,7 +38,7 @@ void	ft_draw(t_data *data)
 	int	x;
 	int	y;
 
-	ft_first_pixel(data);
+	ft_len_map(data);
 	data->posx = WIDE / 2 - data->columns * data->location / 2;
 	data->posy = HEIGHT / 2 - data->rows * data->location / 2;
 	y = 0;
@@ -47,18 +47,19 @@ void	ft_draw(t_data *data)
 		x = 0;
 		while (x < data->columns)
 		{
-			data->brsh.x0 = data->posx + x * data->location;
-			data->brsh.y0 = data->posy + y * data->location - data->height[y][x] * data->location;
-			data->brsh.x1 = data->posx + (x + 1) * data->location;
-			data->brsh.y1 = data->brsh.y0; //- data->height[y][x + 1];
-			ft_bresenham(data, x, y);
+			data->brsh.x0 = data->posx + x * data->location;// * cos(0.523599);
+			data->brsh.y0 = data->posy + y * data->location - data->height[y][x] * data->location;// * sin(0.523599);
+			ft_putpixel(data, x, y);
+			/*data->brsh.x1 = data->posx + ((x + 1) * data->location) * cos(0.523599);
+			data->brsh.y1 = data->brsh.y0;//- data->height[y][x + 1];
+			ft_bresenham(data, x, y);*/
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	ft_bresenham(t_data *data, int x, int y)
+/*static void	ft_bresenham(t_data *data, int x, int y)
 {
 	int	dx;
 	int	dy;
@@ -66,7 +67,6 @@ static void	ft_bresenham(t_data *data, int x, int y)
 
 	dx = data->brsh.x1 - data->brsh.x0;
 	dy = data->brsh.y1 - data->brsh.y0;
-	printf("la DX es: %i \n la DY es: %i\n", dx, dy);
 	p = 2 * dy - dx;
 	while (data->brsh.x0 < data->brsh.x1)
 	{
@@ -83,4 +83,4 @@ static void	ft_bresenham(t_data *data, int x, int y)
 		}
 		data->brsh.x0 = data->brsh.x0 + 1;
 	}
-}
+}*/

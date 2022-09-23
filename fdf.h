@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 # include "minilibx/mlx.h"
 
 typedef struct s_brsh

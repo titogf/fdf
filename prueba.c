@@ -17,6 +17,7 @@ void	ft_prueba(t_data *data)
 	int	x;
 	int	i;
 
+	//mlx_pixel_put(data->mlx_ptr, data->win_ptr, 150, 200.8,  16777215);
 	i = 0;
 	x = WIDE / 2;
 	while (i <= HEIGHT)
