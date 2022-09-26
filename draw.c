@@ -45,12 +45,12 @@ void	ft_draw(t_data *data)
 	while (data->height[y] && y < data->rows)
 	{
 		x = 0;
-		while (x < data->columns)
+		while (x <= data->columns)
 		{
-			data->brsh.x0 = data->posx + x * data->location * cos(0.523599);
-			data->brsh.y0 = data->posy + y * data->location - data->height[y][x] * data->location * sin(0.523599);
+			data->brsh.x0 = data->posx + x * data->location;// * cos(0.523599);
+			data->brsh.y0 = data->posy + y * data->location  - data->height[y][x] * data->location * sin(0.523599);
 			ft_putpixel(data, x, y);
-			data->brsh.x1 = data->posx + ((x + 1) * data->location) * cos(0.523599);
+			data->brsh.x1 = data->posx + (x + 1) * data->location;// * cos(0.523599);
 			data->brsh.y1 = data->brsh.y0 - data->height[y][x + 1];
 			ft_bresenham(data, x, y);
 			x++;
