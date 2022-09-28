@@ -17,19 +17,18 @@ static void	ft_len_map(t_data *data);
 
 static void	ft_len_map(t_data *data)
 {
+	printf("------->%i", data->columns);
 	if (data->columns < 30)
 		data->location = 14;
 	if (data->columns > 29 && data->columns < 60)
-		data->location = 8;
+		data->location = 7;
 	if (data->columns > 59 && data->columns < 80)
 		data->location = 4;
-	if (data->columns > 79 && data->columns < 120)
+	if (data->columns > 79 && data->columns < 110)
 		data->location = 3;
-	if (data->columns > 119 && data->columns < 160)
+	if (data->columns > 109 && data->columns < 160)
 		data->location = 2;
-	if (data->columns > 159 && data->columns < 260)
-		data->location = 1;
-	if (data->columns > 259)
+	if (data->columns > 159)
 		data->location = 1;
 }
 
