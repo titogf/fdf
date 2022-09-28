@@ -18,17 +18,17 @@ static void	ft_len_map(t_data *data);
 static void	ft_len_map(t_data *data)
 {
 	if (data->columns < 30)
-		data->location = 20;
-	if (data->columns > 29 && data->columns < 60)
 		data->location = 14;
+	if (data->columns > 29 && data->columns < 60)
+		data->location = 8;
 	if (data->columns > 59 && data->columns < 80)
-		data->location = 6;
-	if (data->columns > 79 && data->columns < 120)
 		data->location = 4;
-	if (data->columns > 119 && data->columns < 160)
+	if (data->columns > 79 && data->columns < 120)
 		data->location = 3;
-	if (data->columns > 159 && data->columns < 260)
+	if (data->columns > 119 && data->columns < 160)
 		data->location = 2;
+	if (data->columns > 159 && data->columns < 260)
+		data->location = 1;
 	if (data->columns > 259)
 		data->location = 1;
 }
@@ -41,8 +41,8 @@ void	ft_draw(t_data *data)
 
 	ft_len_map(data);
 	space = data->location;
-	data->posx = WIDE / 2 - data->columns * space / 2;
-	data->posy = HEIGHT / 2 - data->rows * space / 2;
+	data->posx = WIDE / 2 - data->columns / 2 * space / 2;
+	data->posy = HEIGHT / 2 - data->rows / 2 * space;
 	y = 0;
 	while (data->height[y] && y < data->rows)
 	{
