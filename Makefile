@@ -14,8 +14,10 @@ MINIFLG = -L./minilibx -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	@echo Generating enforcible...
 	@make -C minilibx
 	$(CC) $(FLAGS) $(OBJS) $(MINILIBX) $(MINIFLG) -o $(NAME)
+	@echo $(NAME) Generated!
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
@@ -28,6 +30,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-n:
-	norminette $(SRC)

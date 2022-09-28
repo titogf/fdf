@@ -29,11 +29,15 @@ void	ft_putfinish(char *str)
 
 void	ft_putpixel(t_data *data, int x, int y)
 {
-	int	x0;
-	int	y0;
+	double	x0;
+	double	y0;
+	double	cs;
+	double	sen;
 
-	x0 = data->brsh.x0;
-	y0 = data->brsh.y0;	
+	cs = cos(0.523599);
+	sen = sin(0.523599);
+	x0 = (data->brsh.x0 - data->brsh.y0) * cs;
+	y0 = -data->height[y][x] + (data->brsh.y0 + data->brsh.x0) * sen;
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
 }
 
