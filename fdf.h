@@ -28,8 +28,8 @@ typedef struct s_brsh
 {
 	double	x0;
 	double	x1;
-	int	y0;
-	int	y1;
+	double	y0;
+	double	y1;
 }	t_brsh;
 
 typedef struct s_data
