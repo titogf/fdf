@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/21 16:38:04 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:32:49 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int ac, char **av)
 	ft_malloc(&data, fd);
 	ft_get_map(&data, av[1], fd);
 	ft_draw(&data);
-	//ft_prueba(&data);
 	ft_window(&data);
 	return (0);
 }

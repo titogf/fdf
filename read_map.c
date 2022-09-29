@@ -6,13 +6,13 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/29 14:12:04 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:46:29 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	ft_put_color(t_data *data);
+static void	ft_put_color(t_data *data, int fd);
 
 void	ft_malloc(t_data *data, int fd)
 {
@@ -69,11 +69,10 @@ void	ft_get_map(t_data *data, char *av, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	ft_put_color(data);
-	close(fd);
+	ft_put_color(data, fd);
 }
 
-static void	ft_put_color(t_data *data)
+static void	ft_put_color(t_data *data, int fd)
 {
 	int	x;
 	int	y;
@@ -90,4 +89,5 @@ static void	ft_put_color(t_data *data)
 		}
 		y++;
 	}
+	close(fd);
 }

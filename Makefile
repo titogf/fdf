@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRC = prueba.c fdf.c close_map.c read_map.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRC = fdf.c close_map.c read_map.c len_map.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 CC = gcc
 
@@ -30,3 +30,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+n:
+	norminette $(SRC)

@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/29 13:50:02 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:59:58 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void		ft_prueba(t_data *data);
 
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
+
+void		ft_len1(t_data *data);
 
 void		ft_putpixel(t_data *data, int x, int y);
 int			ft_atoi_base(char *str, int base);
