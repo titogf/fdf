@@ -45,10 +45,12 @@ void	ft_putpixel(t_data *data, int x, int y)
 	double	y0;
 	double	cs;
 	double	sen;
+	int	space;
 
+	space = data->location;
 	cs = cos(0.523599);
 	sen = sin(0.523599);
-	x0 = (data->brsh.x0 - data->brsh.y0) * cs;
+	x0 = (data->brsh.x0 - data->brsh.y0 - data->height[y][x] * space) * cs;
 	y0 = -data->height[y][x] + (data->brsh.y0 + data->brsh.x0) * sen;
 	x0 = x0 + data->posx;
 	y0 = y0 + data->posy;
