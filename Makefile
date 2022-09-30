@@ -31,5 +31,8 @@ fclean: clean
 
 re: fclean all
 
+c:
+	rm -f $(NAME) $(OBJS)
+
 n:
 	norminette $(SRC)

@@ -46,14 +46,17 @@ static void	ft_len2(t_data *data, int space)
 	int	x;
 	int	y;
 
-	y = -1;
-	while (++y < data->rows)
+	if (data->location != 1)
 	{
-		x = -1;
-		while (++x < data->columns)
+		y = -1;
+		while (++y < data->rows)
 		{
-			if (ft_len3(data, space, x, y) == 1)
-				return ;
+			x = -1;
+			while (++x < data->columns)
+			{
+				if (ft_len3(data, space, x, y) == 1)
+					return ;
+			}
 		}
 	}
 }
