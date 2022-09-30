@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-//static void	ft_bresenham(t_data *data, int x, int y);
+static void	ft_bresenham(t_data *data, int x, int y);
 
 void	ft_draw(t_data *data)
 {
@@ -27,14 +27,14 @@ void	ft_draw(t_data *data)
 	while (data->height[y] && y < data->rows)
 	{
 		x = 0;
-		while (x <= data->columns)
+		while (x < data->columns)
 		{
 			data->brsh.x0 = x * space;
 			data->brsh.y0 = y * space - data->height[y][x] * space;
 			ft_putpixel(data, x, y);
-			/*data->brsh.x1 = (x + 1) * space;
+			data->brsh.x1 = (x + 1) * space;
 			data->brsh.y1 = data->brsh.y0 - data->height[y][x + 1];
-			ft_bresenham(data, x, y);*/
+			ft_bresenham(data, x, y);
 			x++;
 		}
 		y++;
@@ -59,7 +59,7 @@ void	ft_putpixel(t_data *data, int x, int y)
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
 }
 
-/*static void	ft_bresenham(t_data *data, int x, int y)
+static void	ft_bresenham(t_data *data, int x, int y)
 {
 	int	dx;
 	int	dy;
@@ -83,4 +83,4 @@ void	ft_putpixel(t_data *data, int x, int y)
 		}
 		data->brsh.x0 = data->brsh.x0 + 1;
 	}
-}*/
+}
