@@ -31,10 +31,11 @@ void	ft_draw(t_data *data)
 		{
 			data->brsh.x0 = x * space;
 			data->brsh.y0 = y * space - data->height[y][x] * space;
-			ft_putpixel(data, x, y);
+			//ft_putpixel(data, x, y);
 			data->brsh.x1 = (x + 1) * space;
 			data->brsh.y1 = data->brsh.y0 - data->height[y][x + 1];
-			ft_bresenham(data, x, y);
+			if (x != data->columns - 1)
+				ft_bresenham(data, x, y);
 			x++;
 		}
 		y++;
