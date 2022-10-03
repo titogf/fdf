@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/03 12:08:55 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:27:33 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,69 @@ static void	ft_bresenham(t_data *data, int x, int y)
 	{
 		if (p >= 0)
 		{
-			ft_putpixel(data, x, y);
 			data->brsh.y0 = data->brsh.y0 + 1;
-			p = p + 2 * dy - 2 * dx;
+			p = p + 2 * (dy - dx);
 		}
 		else
-		{
-			ft_putpixel(data, x, y);
 			p = p + 2 * dy;
-		}
+		ft_putpixel(data, x, y);
 		data->brsh.x0 = data->brsh.x0 + 1;
 	}
 }
+
+/*static void	ft_bresenham(t_data *data, int x, int y)
+{
+	int	p;
+	int	dx;
+	int	dy;
+	int	stepy;
+	int	stepx;
+
+	dx = data->brsh.x1 - data->brsh.x0;
+	dy = data->brsh.y1 - data->brsh.y0;
+	stepy = 1;
+	stepx = 1;
+	if (dy < 0)
+	{
+		dy = -dy;
+		stepy = -1;
+	}
+	if (dx < 0)
+	{
+		dx = -dx;
+		stepx = -1;
+	}
+	ft_putpixel(data, x, y);
+	if(dx > dy)
+	{
+		p = 2 * dy - dx;
+		while (data->brsh.x0 != data->brsh.x1)
+		{
+			data->brsh.x0 = data->brsh.x0 + stepx;
+			if (p < 0)
+				p = p + 2 * dy;
+			else
+			{
+				data->brsh.y0 = data->brsh.y0 + stepy;
+				p = p + 2 * (dy - dx);
+			}
+			ft_putpixel(data, x, y);
+		}
+	}
+	else
+	{
+		p = 2 * dx - dy;
+		while (data->brsh.y0 != data->brsh.y1)
+		{
+			data->brsh.y0 = data->brsh.y0 + stepy;
+			if (p < 0)
+				p = p + 2 * dx;
+			else
+			{
+				data->brsh.x0 = data->brsh.x0 + stepx;
+				p = p + 2 * (dy - dx);
+			}
+			ft_putpixel(data, x, y);
+		}
+	}
+}*/
