@@ -6,41 +6,14 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/03 15:27:33 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:40:52 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static void	ft_bresenham(t_data *data, int x, int y);
-
-void	ft_draw(t_data *data)
-{
-	int	x;
-	int	y;
-	int	space;
-
-	data->div2 = 1;
-	ft_len1(data);
-	space = data->location;
-	y = 0;
-	while (data->height[y] && y < data->rows)
-	{
-		x = 0;
-		while (x < data->columns)
-		{
-			data->brsh.x0 = x * space;
-			data->brsh.y0 = y * space - data->height[y][x] * space;
-			//ft_putpixel(data, x, y);
-			data->brsh.x1 = (x + 1) * space;
-			data->brsh.y1 = data->brsh.y0 - data->height[y][x + 1];
-			if (x != data->columns - 1)
-				ft_bresenham(data, x, y);
-			x++;
-		}
-		y++;
-	}
-}
+static void	ft_draw2(t_data *data);
 
 void	ft_putpixel(t_data *data, int x, int y)
 {
@@ -60,30 +33,61 @@ void	ft_putpixel(t_data *data, int x, int y)
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
 }
 
-static void	ft_bresenham(t_data *data, int x, int y)
+void	ft_draw(t_data *data)
 {
-	int	dx;
-	int	dy;
-	int	p;
+	int	x;
+	int	y;
+	int	space;
 
-	dx = data->brsh.x1 - data->brsh.x0;
-	dy = data->brsh.y1 - data->brsh.y0;
-	p = 2 * dy - dx;
-	while (data->brsh.x0 < data->brsh.x1)
+	data->div2 = 1;
+	ft_len1(data);
+	space = data->location;
+	y = 0;
+	while (y < data->rows)
 	{
-		if (p >= 0)
+		x = 0;
+		while (x < data->columns - 1)
 		{
-			data->brsh.y0 = data->brsh.y0 + 1;
-			p = p + 2 * (dy - dx);
+			data->brsh.x0 = x * space;
+			data->brsh.y0 = (y - data->height[y][x]) * space;
+		//	ft_putpixel(data, x, y);
+			data->brsh.x1 = (x + 1) * space;
+			data->brsh.y1 = data->brsh.y0 - data->height[y][x + 1];
+			if (x != data->columns - 1)
+				ft_bresenham(data, x, y);
+			x++;
 		}
-		else
-			p = p + 2 * dy;
-		ft_putpixel(data, x, y);
-		data->brsh.x0 = data->brsh.x0 + 1;
+		y++;
+	}
+	ft_draw2(data);
+}
+
+static void	ft_draw2(t_data *data)
+{
+	int	x;
+	int	y;
+	int	space;
+
+	space = data->location;
+	x = 0;
+	while (x < data->columns)
+	{
+		y = 0;
+		while (y < data->rows - 1)
+		{
+			data->brsh.x0 = x * space;
+			data->brsh.y0 = (y - data->height[y][x]) * space;
+			data->brsh.x1 = data->brsh.x0;
+			data->brsh.y1 = (y + 1 - data->height[y + 1][x]) * space;
+			if (y != data->rows - 1)
+				ft_bresenham(data, x, y);
+			y++;
+		}
+		x++;
 	}
 }
 
-/*static void	ft_bresenham(t_data *data, int x, int y)
+static void	ft_bresenham(t_data *data, int x, int y)
 {
 	int	p;
 	int	dx;
@@ -100,13 +104,13 @@ static void	ft_bresenham(t_data *data, int x, int y)
 		dy = -dy;
 		stepy = -1;
 	}
+	ft_putpixel(data, x, y);
 	if (dx < 0)
 	{
 		dx = -dx;
 		stepx = -1;
 	}
-	ft_putpixel(data, x, y);
-	if(dx > dy)
+	if (dx > dy)
 	{
 		p = 2 * dy - dx;
 		while (data->brsh.x0 != data->brsh.x1)
@@ -133,9 +137,32 @@ static void	ft_bresenham(t_data *data, int x, int y)
 			else
 			{
 				data->brsh.x0 = data->brsh.x0 + stepx;
-				p = p + 2 * (dy - dx);
+				p = p + 2 * (dx -dy);
 			}
 			ft_putpixel(data, x, y);
 		}
+	}
+}
+
+/*static void	ft_bresenham(t_data *data, int x, int y)
+{
+	int	dx;
+	int	dy;
+	int	p;
+
+	dx = data->brsh.x1 - data->brsh.x0;
+	dy = data->brsh.y1 - data->brsh.y0;
+	p = 2 * dy - dx;
+	while (data->brsh.x0 < data->brsh.x1)
+	{
+		if (p >= 0)
+		{
+			data->brsh.y0 = data->brsh.y0 + 1;
+			p = p + 2 * (dy - dx);
+		}
+		else
+			p = p + 2 * dy;
+		ft_putpixel(data, x, y);
+		data->brsh.x0 = data->brsh.x0 + 1;
 	}
 }*/
