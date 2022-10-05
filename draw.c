@@ -13,7 +13,7 @@
 #include "fdf.h"
 
 static void	ft_bresenham(t_data *data, int x, int y);
-static void	ft_draw2(t_data *data);
+static void	ft_vertical(t_data *data);
 
 void	ft_putpixel(t_data *data, int x, int y)
 {
@@ -33,7 +33,7 @@ void	ft_putpixel(t_data *data, int x, int y)
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
 }
 
-void	ft_draw(t_data *data)
+void	ft_horizontal(t_data *data)
 {
 	int	x;
 	int	y;
@@ -59,10 +59,10 @@ void	ft_draw(t_data *data)
 		}
 		y++;
 	}
-	ft_draw2(data);
+	ft_vertical(data);
 }
 
-static void	ft_draw2(t_data *data)
+static void	ft_vertical(t_data *data)
 {
 	int	x;
 	int	y;

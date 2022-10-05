@@ -50,13 +50,12 @@ typedef struct s_data
 void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, int fd);
 void		ft_get_map(t_data *data, char *av, int fd);
-void		ft_draw(t_data *data);
-void		ft_prueba(t_data *data);
+void		ft_horizontal(t_data *data);
+void		ft_len1(t_data *data);
 
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
 
-void		ft_len1(t_data *data);
 
 void		ft_putpixel(t_data *data, int x, int y);
 int			ft_atoi_base(char *str, int base);
