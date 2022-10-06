@@ -27,8 +27,8 @@
 typedef struct s_brsh
 {
 	double	x0;
-	double	x1;
 	double	y0;
+	double	x1;
 	double	y1;
 }	t_brsh;
 
@@ -57,7 +57,7 @@ char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
 
 
-void		ft_putpixel(t_data *data, int x, int y);
+void		ft_putpixel(t_data *data, int mx, int my);
 int			ft_atoi_base(char *str, int base);
 void		ft_putfinish(char *str);
 

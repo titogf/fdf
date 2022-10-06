@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#define MAX(a, b) (a > b ? a : b)
+#define MOD(a) ((a < 0) ? -a : a)
 
-static void	ft_bresenham(t_data *data, int x, int y);
-static void	ft_vertical(t_data *data);
+static void	ft_bresenham(t_data *data, int mx, int my);
+//static void	ft_vertical(t_data *data);
 
-void	ft_putpixel(t_data *data, int x, int y)
+void	ft_putpixel(t_data *data, int mx, int my)
 {
 	double	x0;
 	double	y0;
@@ -26,68 +28,67 @@ void	ft_putpixel(t_data *data, int x, int y)
 	space = data->location;
 	cs = cos(0.523599);
 	sen = sin(0.523599);
-	x0 = (data->brsh.x0 - data->brsh.y0 - data->height[y][x] * space) * cs;
-	y0 = -data->height[y][x] + (data->brsh.y0 + data->brsh.x0) * sen;
+	x0 = (data->brsh.x0 - data->brsh.y0 - data->height[my][mx] * space) * cs;
+	y0 = -data->height[my][mx] + (data->brsh.y0 + data->brsh.x0) * sen;
 	x0 = x0 + data->posx;
 	y0 = y0 + data->posy;
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[y][x]);
+	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, data->color[my][mx]);
 }
 
 void	ft_horizontal(t_data *data)
 {
-	int	x;
-	int	y;
+	int	mx;
+	int	my;
 	int	space;
 
 	data->div2 = 1;
 	ft_len1(data);
 	space = data->location;
-	y = 0;
-	while (y < data->rows)
+	my = 0;
+	while (my < data->rows)
 	{
-		x = 0;
-		while (x < data->columns - 1)
+		mx = 0;
+		while (mx < data->columns - 1)
 		{
-			data->brsh.x0 = x * space;
-			data->brsh.y0 = (y - data->height[y][x]) * space;
-		//	ft_putpixel(data, x, y);
-			data->brsh.x1 = (x + 1) * space;
-			data->brsh.y1 = data->brsh.y0 - data->height[y][x + 1];
-			if (x != data->columns - 1)
-				ft_bresenham(data, x, y);
-			x++;
+			data->brsh.x0 = mx * space;
+			data->brsh.y0 = (my - data->height[my][mx]) * space;
+			data->brsh.x1 = (mx + 1) * space;
+			data->brsh.y1 = data->brsh.y0 - data->height[my][mx + 1];
+			if (mx != data->columns - 1)
+				ft_bresenham(data, mx, my);
+			mx++;
 		}
-		y++;
+		my++;
 	}
-	ft_vertical(data);
+	//ft_vertical(data);
 }
 
-static void	ft_vertical(t_data *data)
+/*static void	ft_vertical(t_data *data)
 {
-	int	x;
-	int	y;
+	int	mx;
+	int	my;
 	int	space;
 
 	space = data->location;
-	x = 0;
-	while (x < data->columns)
+	mx = 0;
+	while (mx < data->columns)
 	{
-		y = 0;
-		while (y < data->rows - 1)
+		my = 0;
+		while (my < data->rows - 1)
 		{
-			data->brsh.x0 = x * space;
-			data->brsh.y0 = (y - data->height[y][x]) * space;
+			data->brsh.x0 = mx * space;
+			data->brsh.y0 = (my - data->height[my][mx]) * space;
 			data->brsh.x1 = data->brsh.x0;
-			data->brsh.y1 = (y + 1 - data->height[y + 1][x]) * space;
-			if (y != data->rows - 1)
-				ft_bresenham(data, x, y);
-			y++;
+			data->brsh.y1 = (my + 1 - data->height[my + 1][mx]) * space;
+			if (my != data->rows - 1)
+				ft_bresenham(data, mx, my);
+			my++;
 		}
-		x++;
+		mx++;
 	}
-}
+}*/
 
-static void	ft_bresenham(t_data *data, int x, int y)
+/*static void	ft_bresenham(t_data *data, int mx, int my)
 {
 	int	p;
 	int	dx;
@@ -123,7 +124,7 @@ static void	ft_bresenham(t_data *data, int x, int y)
 				data->brsh.y0 = data->brsh.y0 + stepy;
 				p = p + 2 * (dy - dx);
 			}
-			ft_putpixel(data, x, y);
+			ft_putpixel(data, mx, my);
 		}
 	}
 	else
@@ -139,30 +140,26 @@ static void	ft_bresenham(t_data *data, int x, int y)
 				data->brsh.x0 = data->brsh.x0 + stepx;
 				p = p + 2 * (dx -dy);
 			}
-			ft_putpixel(data, x, y);
+			ft_putpixel(data, mx, my);
 		}
 	}
-}
+}*/
 
-/*static void	ft_bresenham(t_data *data, int x, int y)
+static void	ft_bresenham(t_data *data, int mx, int my)
 {
 	int	dx;
 	int	dy;
-	int	p;
+	int	max;
 
 	dx = data->brsh.x1 - data->brsh.x0;
 	dy = data->brsh.y1 - data->brsh.y0;
-	p = 2 * dy - dx;
-	while (data->brsh.x0 < data->brsh.x1)
+	max = MAX(MOD(dx), MOD(dy));
+	dx = dx / max;
+	dy = dy / max;
+	while (data->brsh.x0 < data->brsh.x1 || data->brsh.y0 < data->brsh.y1)
 	{
-		if (p >= 0)
-		{
-			data->brsh.y0 = data->brsh.y0 + 1;
-			p = p + 2 * (dy - dx);
-		}
-		else
-			p = p + 2 * dy;
-		ft_putpixel(data, x, y);
-		data->brsh.x0 = data->brsh.x0 + 1;
+		ft_putpixel(data, mx, my);
+		data->brsh.x0 += dx;
+		data->brsh.y0 += dy;
 	}
-}*/
+}
