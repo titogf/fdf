@@ -87,12 +87,12 @@ static void	ft_put_color(t_data *data, int fd)
 			{
 				if (data->height[y][x] < 0)
 					data->color[y][x] = 12988888;
-				else if (data->height[y][x] == 0)
+				else //if (data->height[y][x] == 0)
 					data->color[y][x] = 16777215;
-				else if (data->height[y][x] < 51)
+				/*else if (data->height[y][x] < 51)
 					data->color[y][x] = 65280;
 				else if (data->height[y][x] > 50)
-					data->color[y][x] = 8454658;
+					data->color[y][x] = 8454658;*/
 			}
 			x++;
 		}

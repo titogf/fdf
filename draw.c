@@ -21,13 +21,12 @@ void	ft_putpixel(t_data *data, int mx, int my)
 	double	x;
 	double	y;
 
-	x = data->brsh.x0 - data->brsh.y0;
-	x = x - data->height[my][mx] * data->location;
+	x = data->brsh.x0 - data->brsh.y0 - data->height[my][mx];
 	y = -data->height[my][mx] + (data->brsh.y0 + data->brsh.x0);
 	x = x * cos(0.523599) + data->posx;
 	y = y * sin(0.523599) + data->posy;
-	x = data->brsh.x0;
-	y = data->brsh.y0;
+	//x = data->brsh.x0 + data->posx;
+	//y = data->brsh.y0 + data->posy;
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color[my][mx]);
 }
 
@@ -124,6 +123,7 @@ static void	ft_bresenham(t_data *data, int mx, int my)
 	dy = data->brsh.y1 - data->brsh.y0;
 	stepy = 1;
 	stepx = 1;
+	ft_putpixel(data, mx, my);
 	if (dy < 0)
 	{
 		dy = -dy;
@@ -161,7 +161,7 @@ static void	ft_bresenham(t_data *data, int mx, int my)
 			else
 			{
 				data->brsh.x0 = data->brsh.x0 + stepx;
-				p = p + 2 * (dx -dy);
+				p = p + 2 * (dx - dy);
 			}
 			ft_putpixel(data, mx, my);
 		}
