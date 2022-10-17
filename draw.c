@@ -20,7 +20,7 @@ void	ft_putpixel(t_data *data, int mx, int my)
 	double	x;
 	double	y;
 
-	x = (data->brsh.x0 - data->brsh.y0) * cos(0.524) + data->posx;
+	x = (data->brsh.x0 - data->brsh.y0) * cos(0.5249 + data->posx;
 	x = (data->brsh.x0 - data->brsh.y0) - data->location * data->height[my][mx] + data->posx;
 	y = (data->brsh.y0 + data->brsh.x0) * sin(0.524) + data->posy;
 	//x = data->brsh.x0 + data->posx;
@@ -48,7 +48,6 @@ void	ft_horizontal(t_data *data)
 			data->brsh.x1 = (mx + 1) * space;
 			data->brsh.y1 = (my - data->height[my][mx + 1]) * space;
 			ft_bresenham(data, mx, my);
-			ft_putpixel(data, mx, my);
 			mx++;
 		}
 		my++;
@@ -74,7 +73,6 @@ static void	ft_vertical(t_data *data)
 			data->brsh.x1 = data->brsh.x0;
 			data->brsh.y1 = (my + 1 - data->height[my + 1][mx]) * space;
 			ft_bresenham(data, mx, my);
-			ft_putpixel(data, mx, my);
 			my++;
 		}
 		mx++;
