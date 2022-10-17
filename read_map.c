@@ -6,13 +6,14 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/03 12:53:40 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:17:57 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	ft_put_color(t_data *data, int fd);
+static void	ft_read_color(t_data *data, int fd);
+static void	ft_put_color(t_data *data, int x, int y, int c);
 
 void	ft_malloc(t_data *data, int fd)
 {
@@ -69,13 +70,14 @@ void	ft_get_map(t_data *data, char *av, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	ft_put_color(data, fd);
+	ft_read_color(data, fd);
 }
 
-static void	ft_put_color(t_data *data, int fd)
+static void	ft_read_color(t_data *data, int fd)
 {
 	int	x;
 	int	y;
+	int	c;
 
 	y = 0;
 	while (data->color[y] && y < data->rows)
@@ -83,20 +85,26 @@ static void	ft_put_color(t_data *data, int fd)
 		x = 0;
 		while (x < data->columns)
 		{
+			c = data->height[y][x];
+			if (c < 0)
+				c *= -1;
 			if (data->color[y][x] == -1)
-			{
-				if (data->height[y][x] < 0)
-					data->color[y][x] = 12988888;
-				else //if (data->height[y][x] == 0)
-					data->color[y][x] = 16777215;
-				/*else if (data->height[y][x] < 51)
-					data->color[y][x] = 65280;
-				else if (data->height[y][x] > 50)
-					data->color[y][x] = 8454658;*/
-			}
+				ft_put_color(data, x, y, c);
 			x++;
 		}
 		y++;
 	}
 	close(fd);
+}
+
+static void	ft_put_color(t_data *data, int x, int y, int c)
+{
+	if (c < 0)
+		data->color[y][x] = 12988888;
+	else if (c == 0)
+		data->color[y][x] = 16777215;
+	else if (c < 51)
+		data->color[y][x] = 65280;
+	else if (c > 50)
+		data->color[y][x] = 8454658;
 }

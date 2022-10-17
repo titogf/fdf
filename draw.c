@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/03 17:40:52 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:59:29 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,19 @@ void	ft_horizontal(t_data *data)
 {
 	int	mx;
 	int	my;
-	int	space;
 
 	data->div2 = 1;
 	ft_len1(data);
-	space = data->location;
 	my = 0;
 	while (my < data->rows)
 	{
 		mx = 0;
 		while (mx < data->columns - 1)
 		{
-			data->brsh.x0 = mx * space;
-			data->brsh.y0 = my * space;
-			data->brsh.x1 = (mx + 1) * space;
-			data->brsh.y1 = my * space;
+			data->brsh.x0 = mx * data->location;
+			data->brsh.y0 = my * data->location;
+			data->brsh.x1 = (mx + 1) * data->location;
+			data->brsh.y1 = my * data->location;
 			ft_bresenham(data, mx, my);
 			mx++;
 		}
@@ -58,19 +56,17 @@ static void	ft_vertical(t_data *data)
 {
 	int	mx;
 	int	my;
-	int	space;
 
-	space = data->location;
 	mx = 0;
 	while (mx < data->columns)
 	{
 		my = 0;
 		while (my < data->rows - 1)
 		{
-			data->brsh.x0 = mx * space;
-			data->brsh.y0 = my * space;
+			data->brsh.x0 = mx * data->location;
+			data->brsh.y0 = my * data->location;
 			data->brsh.x1 = data->brsh.x0;
-			data->brsh.y1 = (my + 1) * space;
+			data->brsh.y1 = (my + 1) * data->location;
 			ft_bresenham(data, mx, my);
 			my++;
 		}
