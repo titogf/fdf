@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 	}
 	ft_malloc(&data, fd);
 	ft_get_map(&data, av[1], fd);
-	ft_horizontal(&data);
+	ft_draw_x(&data);
 	ft_window(&data);
 	return (0);
 }

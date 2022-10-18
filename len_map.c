@@ -22,20 +22,20 @@ void	ft_len1(t_data *data)
 
 	size = data->columns * data->div2;
 	if (size < 20)
-		data->location = 20;
+		data->space = 20;
 	if (size > 19 && size < 30)
-		data->location = 14;
+		data->space = 14;
 	if (size > 29 && size < 60)
-		data->location = 7;
+		data->space = 7;
 	if (size > 59 && size < 80)
-		data->location = 4;
+		data->space = 4;
 	if (size > 79 && size < 110)
-		data->location = 3;
+		data->space = 3;
 	if (size > 109 && size < 160)
-		data->location = 2;
+		data->space = 2;
 	if (size > 159)
-		data->location = 1;
-	space = data->location;
+		data->space = 1;
+	space = data->space;
 	data->posx = WIDE / 2 - data->columns / 2 * space / 2;
 	data->posy = HEIGHT / 2 - data->rows / 2 * space;
 	ft_len2(data, space);
@@ -46,7 +46,7 @@ static void	ft_len2(t_data *data, int space)
 	int	x;
 	int	y;
 
-	if (data->location != 1)
+	if (data->space != 1)
 	{
 		y = -1;
 		while (++y < data->rows)

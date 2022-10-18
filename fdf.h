@@ -40,7 +40,7 @@ typedef struct s_data
 	int		**color;
 	int		rows;
 	int		columns;
-	int		location;
+	int		space;
 	int		div2;
 	int		posx;
 	int		posy;
@@ -50,7 +50,7 @@ typedef struct s_data
 void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, int fd);
 void		ft_get_map(t_data *data, char *av, int fd);
-void		ft_horizontal(t_data *data);
+void		ft_draw_x(t_data *data);
 void		ft_len1(t_data *data);
 
 char		**ft_split(char *s, char c);
