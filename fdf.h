@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/20 15:45:22 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:42:13 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,20 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 # include "minilibx/mlx.h"
 
 typedef struct s_brsh
 {
-	double	x0;
-	double	y0;
-	double	x1;
-	double	y1;
-	double	dx;
-	double	dy;
-	int		stepx;
-	int		stepy;
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	dx;
+	int	dy;
+	int	stepx;
+	int	stepy;
+	int	p;
 }	t_brsh;
 
 typedef struct s_data
@@ -56,9 +58,10 @@ void		ft_get_map(t_data *data, char *av, int fd);
 void		ft_draw_x(t_data *data);
 void		ft_len1(t_data *data);
 
+void		ft_bresenham(t_data *data, int mx, int my);
+
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
-
 
 void		ft_putpixel(t_data *data, int mx, int my);
 int			ft_atoi_base(char *str, int base);
