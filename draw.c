@@ -26,6 +26,65 @@ void	ft_putpixel(t_data *data, int mx, int my)
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color[my][mx]);
 }
 
+static void	ft_bresenham(t_data *data, int mx, int my)
+{
+	double	p;
+	double	dx;
+	double	dy;
+	int	stepy;
+	int	stepx;
+
+	//printf("X1--->%f\nX0--->%f\n", data->brsh.x1, data->brsh.x0);
+	//printf("Y1--->%f\nY0--->%f\n", data->brsh.y1, data->brsh.y0);
+	stepy = 1;
+	stepx = 1;
+	dx = data->brsh.x1 - data->brsh.x0;
+	dy = data->brsh.y1 - data->brsh.y0;
+	ft_putpixel(data, mx, my);
+	if (dy < 0)
+	{
+		dy = -dy;
+		stepy = -1;
+	}
+	if (dx < 0)
+	{
+		dx = -dx;
+		stepx = -1;
+	}
+	if (dx > dy)
+	{
+		p = 2 * dy - dx;
+		while (data->brsh.x0 != data->brsh.x1)
+		{
+			data->brsh.x0 = data->brsh.x0 + stepx;
+			if (p < 0)
+				p = p + 2 * dy;
+			else
+			{
+				data->brsh.y0 = data->brsh.y0 + stepy;
+				p = p + 2 * (dy - dx);
+			}
+			ft_putpixel(data, mx, my);
+		}
+	}
+	else
+	{
+		p = 2 * dx - dy;
+		while (data->brsh.y0 != data->brsh.y1)
+		{
+			data->brsh.y0 = data->brsh.y0 + stepy;
+			if (p < 0)
+				p = p + 2 * dx;
+			else
+			{
+				data->brsh.x0 = data->brsh.x0 + stepx;
+				p = p + 2 * (dx - dy);
+			}
+			ft_putpixel(data, mx, my);
+		}
+	}
+}
+
 static void	ft_isometric(t_data *data, int mx, int my, int n)
 {
 	double	x;
@@ -54,6 +113,27 @@ static void	ft_isometric(t_data *data, int mx, int my, int n)
 	}
 }
 
+static void	ft_draw_y(t_data *data)
+{
+	int	mx;
+	int	my;
+
+	mx = 0;
+	while (mx < data->columns)
+	{
+		my = 0;
+		while (my < data->rows - 1)
+		{
+			ft_isometric(data, mx, my, 0);
+			ft_isometric(data, mx, my + 1, 1);
+			ft_putpixel(data, mx, my);
+			ft_bresenham(data, mx, my);
+			my++;
+		}
+		mx++;
+	}
+}
+
 void	ft_draw_x(t_data *data)
 {
 	int	mx;
@@ -76,91 +156,4 @@ void	ft_draw_x(t_data *data)
 		my++;
 	}
 	ft_draw_y(data);
-}
-
-static void	ft_draw_y(t_data *data)
-{
-	int	mx;
-	int	my;
-
-	mx = 0;
-	while (mx < data->columns)
-	{
-		my = 0;
-		while (my < data->rows - 1)
-		{
-			ft_isometric(data, mx, my, 0);
-			ft_isometric(data, mx, my + 1, 1);
-			ft_bresenham(data, mx, my);
-			ft_putpixel(data, mx, my);
-			my++;
-		}
-		mx++;
-	}
-}
-
-static void	ft_bresenham(t_data *data, int mx, int my)
-{
-	double	p;
-	double	dx;
-	double	dy;
-	int	stepy;
-	int	stepx;
-
-	printf("1");
-	printf("------->%f\n<------%f\n", data->brsh.x1, data->brsh.y1);
-	printf("--->%f\n<---%f\n", data->brsh.x0, data->brsh.y0);
-	dx = data->brsh.x1 - data->brsh.x0;
-	dy = data->brsh.y1 - data->brsh.y0;
-	printf("2");
-	stepy = 1;
-	stepx = 1;
-	ft_isometric(data, mx, my, 0);
-	ft_putpixel(data, mx, my);
-	if (dy < 0)
-	{
-		dy = -dy;
-		stepy = -1;
-	}
-	if (dx < 0)
-	{
-		dx = -dx;
-		stepx = -1;
-	}
-	printf("3");
-	if (dx > dy)
-	{
-		p = 2 * dy - dx;
-		while (data->brsh.x0 != data->brsh.x1)
-		{
-			data->brsh.x0 = data->brsh.x0 + stepx;
-			if (p < 0)
-				p = p + 2 * dy;
-			else
-			{
-				data->brsh.y0 = data->brsh.y0 + stepy;
-				p = p + 2 * (dy - dx);
-			}
-			ft_isometric(data, mx, my, 0);
-			ft_putpixel(data, mx, my);
-		}
-	}
-	else
-	{
-		p = 2 * dx - dy;
-		while (data->brsh.y0 != data->brsh.y1)
-		{
-			data->brsh.y0 = data->brsh.y0 + stepy;
-			if (p < 0)
-				p = p + 2 * dx;
-			else
-			{
-				data->brsh.x0 = data->brsh.x0 + stepx;
-				p = p + 2 * (dx - dy);
-			}
-			ft_isometric(data, mx, my, 0);
-			ft_putpixel(data, mx, my);
-		}
-	}
-	printf("5");
 }
