@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/29 15:59:58 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:11:24 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <math.h>
 # include "minilibx/mlx.h"
 
 typedef struct s_brsh

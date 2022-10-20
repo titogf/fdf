@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/17 18:17:57 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:55:26 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ static void	ft_read_color(t_data *data, int fd)
 
 static void	ft_put_color(t_data *data, int x, int y, int c)
 {
-	if (c < 0)
-		data->color[y][x] = 12988888;
-	else if (c == 0)
+	if (c == 0)
 		data->color[y][x] = 16777215;
-	else if (c < 51)
+	else if (c < 31)
 		data->color[y][x] = 65280;
-	else if (c > 50)
+	else if (c < 51)
 		data->color[y][x] = 8454658;
+	else if (c > 50)
+		data->color[y][x] = 12988888;
 }
