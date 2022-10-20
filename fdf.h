@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/20 14:11:24 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:45:22 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ typedef struct s_brsh
 	double	y0;
 	double	x1;
 	double	y1;
+	double	dx;
+	double	dy;
+	int		stepx;
+	int		stepy;
 }	t_brsh;
 
 typedef struct s_data

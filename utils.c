@@ -6,13 +6,23 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/06/01 15:07:13 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:53:35 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static int	ft_return_nb(char *str, int i, int base);
+
+void	ft_putpixel(t_data *data, int mx, int my)
+{
+	double	x;
+	double	y;
+
+	x = data->brsh.x0;
+	y = data->brsh.y0;
+	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color[my][mx]);
+}
 
 void	ft_putfinish(char *str)
 {

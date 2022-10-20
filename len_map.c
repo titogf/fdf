@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:56:40 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/29 16:02:08 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:28:43 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ void	ft_len1(t_data *data)
 	if (size > 19 && size < 30)
 		data->space = 14;
 	if (size > 29 && size < 60)
-		data->space = 7;
+		data->space = 8;
 	if (size > 59 && size < 80)
-		data->space = 4;
+		data->space = 6;
 	if (size > 79 && size < 110)
-		data->space = 3;
-	if (size > 109 && size < 160)
+		data->space = 4;
+	if (size > 109)
 		data->space = 2;
-	if (size > 159)
-		data->space = 1;
 	space = data->space;
 	data->posx = WIDE / 2 - data->columns / 2 * space / 2;
 	data->posy = HEIGHT / 2 - data->rows / 2 * space;
@@ -54,6 +52,8 @@ static void	ft_len2(t_data *data, int space)
 			x = -1;
 			while (++x < data->columns)
 			{
+				if (data->space == 2)
+					return ;
 				if (ft_len3(data, space, x, y) == 1)
 					return ;
 			}
