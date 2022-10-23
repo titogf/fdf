@@ -64,13 +64,18 @@ static void	ft_draw_y(t_data *data)
 	}
 }
 
-void	ft_draw_x(t_data *data)
+void	ft_draw_x(t_data *data, int n)
 {
 	int	mx;
 	int	my;
 
-	data->div2 = 1;
-	ft_len1(data);
+	if (n == 1)
+	{
+		data->div2 = 1;
+		ft_len1(data);
+	}
+	else
+		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	my = 0;
 	while (my < data->rows)
 	{

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_map.c                                        :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,11 +26,42 @@ void	ft_window(t_data *data)
 
 static int	keyb(int key, t_data *data)
 {
+	printf("->%d\n", key);
 	if (key == 53)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 		exit(1);
+	}
+	if (key == 30)
+	{
+		data->space += 1;
+		ft_draw_x(data, 2);
+	}
+	if (key == 44)
+	{
+		data->space -= 1;
+		ft_draw_x(data, 2);
+	}
+	if (key == 123)
+	{
+		data->posx -= 4;
+		ft_draw_x(data, 2);
+	}
+	if (key == 124)
+	{
+		data->posx += 4;
+		ft_draw_x(data, 2);
+	}
+	if (key == 125)
+	{
+		data->posy -= 4;
+		ft_draw_x(data, 2);
+	}
+	if (key == 126)
+	{
+		data->posy += 4;
+		ft_draw_x(data, 2);
 	}
 	return (0);
 }
