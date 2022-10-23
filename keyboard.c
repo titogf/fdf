@@ -34,14 +34,17 @@ static int	exkey(t_data *data)
 
 static int	keyb(int key, t_data *data)
 {
+	printf("%d\n", key);
 	if (key == 53)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 		exit(1);
 	}
-	if (key == 3)
+	if (key == 35)
 		ft_draw_x(data, 5);
+	if (key == 34)
+		ft_draw_x(data, 2);
 	if (key == 30)
 	{
 		data->space += 1;

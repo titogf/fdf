@@ -14,6 +14,29 @@
 
 static int	ft_return_nb(char *str, int i, int base);
 
+void	ft_legend(t_data *data, int n)
+{
+	char	*c;
+
+	if (n == 1)
+	{
+		data->div2 = 1;
+		ft_len1(data);
+	}
+	else
+		mlx_clear_window(data->mlx_ptr, data->win_ptr);
+ 	c = "Press ESC to close the program";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 15, 666, c);
+ 	c = "Press + or - to change the zoom";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 40, 666, c);
+ 	c = "Press the arrows to move the map";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 65, 666, c);
+ 	c = "Press P to change to plant view";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 90, 666, c);
+ 	c = "Press I to change to isometric view";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 115, 666, c);
+}
+
 void	ft_putpixel(t_data *data, int mx, int my)
 {
 	double	x;
