@@ -13,6 +13,7 @@
 #include "fdf.h"
 
 static int	keyb(int key, t_data *data);
+static void	ft_key_move(int key, t_data *data);
 static int	exkey(t_data *data);
 
 void	ft_window(t_data *data)
@@ -24,15 +25,23 @@ void	ft_window(t_data *data)
 	free(data->mlx_ptr);
 }
 
+static int	exkey(t_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	data->win_ptr = NULL;
+	exit(1);
+}
+
 static int	keyb(int key, t_data *data)
 {
-	printf("->%d\n", key);
 	if (key == 53)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 		exit(1);
 	}
+	if (key == 3)
+		ft_draw_x(data, 5);
 	if (key == 30)
 	{
 		data->space += 1;
@@ -43,32 +52,35 @@ static int	keyb(int key, t_data *data)
 		data->space -= 1;
 		ft_draw_x(data, 2);
 	}
-	if (key == 123)
-	{
-		data->posx -= 4;
-		ft_draw_x(data, 2);
-	}
-	if (key == 124)
-	{
-		data->posx += 4;
-		ft_draw_x(data, 2);
-	}
-	if (key == 125)
-	{
-		data->posy -= 4;
-		ft_draw_x(data, 2);
-	}
-	if (key == 126)
-	{
-		data->posy += 4;
-		ft_draw_x(data, 2);
-	}
+	ft_key_move(key, data);
 	return (0);
 }
 
-static int	exkey(t_data *data)
+static void	ft_key_move(int key, t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
-	exit(1);
+	int	n;
+
+	n = 4;
+	if ( data->columns > 200)
+		n = 10;
+	if (key == 123 || key == 0)
+	{
+		data->posx -= n;
+		ft_draw_x(data, 2);
+	}
+	if (key == 124 || key == 2)
+	{
+		data->posx += n;
+		ft_draw_x(data, 2);
+	}
+	if (key == 125 || key == 1)
+	{
+		data->posy += n;
+		ft_draw_x(data, 2);
+	}
+	if (key == 126 || key == 13)
+	{
+		data->posy -= n;
+		ft_draw_x(data, 2);
+	}
 }

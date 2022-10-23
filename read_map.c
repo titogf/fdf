@@ -27,7 +27,6 @@ void	ft_malloc(t_data *data, int fd)
 		data->rows = 0;
 		while (line != NULL)
 		{
-			printf("%s\n", line);
 			data->rows++;
 			free(line);
 			line = get_next_line(fd);
