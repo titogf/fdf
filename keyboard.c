@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:37:44 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/24 14:13:10 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:32:39 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static int	keyb(int key, t_data *data)
 	if (key == 34)
 	{
 		data->c = 2;
+		if (data->brsh.cs != cos(0.524) || data->brsh.sn != sin(0.524))
+			data->c = 1;
 		ft_draw_x(data, data->c);
+		data->c = 2;
 	}
 	ft_key_degrees(key, data);
 	ft_key_zoom(key, data);
