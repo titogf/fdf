@@ -24,6 +24,7 @@ void	ft_legend(t_data *data, int n)
 	{
 		data->brsh.cs = 0.524;
 		data->brsh.sn = 0.524;
+		data->proyection = ISO;
 		data->div2 = 1;
 		ft_len1(data);
 	}

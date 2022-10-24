@@ -32,14 +32,15 @@ static int	keyb(int key, t_data *data)
 	}
 	if (key == 35)
 	{
-		data->c = 5;
-		ft_draw_x(data, data->c);
+		data->proyection = 2;
+		ft_draw_x(data, 2);
 	}
 	if (key == 34)
 	{
 		data->c = 2;
-		if (data->brsh.cs != cos(0.524) || data->brsh.sn != sin(0.524))
-			data->c = 1;
+		data->proyection = ISO;
+		//if (data->brsh.cs != cos(0.524) || data->brsh.sn != sin(0.524))
+		//	data->c = 1;
 		ft_draw_x(data, data->c);
 		data->c = 2;
 	}

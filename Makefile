@@ -26,7 +26,7 @@ clean:
 	@make clean -C minilibx
 	rm -f $(OBJS)
 
-fclean: clean
+fclean:
 	rm -f $(NAME)
 
 re: fclean all

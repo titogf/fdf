@@ -17,6 +17,7 @@
 # define HEIGHT 900 //altura ventana
 # define WIDE 1200 //anchura ventana
 # define PIXEL 50
+# define ISO 1
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -52,6 +53,7 @@ typedef struct s_data
 	int		posx;
 	int		posy;
 	int		c;
+	int		proyection;
 	t_brsh	brsh;
 }	t_data;
 
