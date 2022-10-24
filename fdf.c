@@ -6,11 +6,13 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/09/29 15:32:49 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:01:09 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	ft_putfinish(char *str);
 
 void	checkleaks(void)
 {
@@ -40,4 +42,17 @@ int	main(int ac, char **av)
 	ft_draw_x(&data, 1);
 	ft_window(&data);
 	return (0);
+}
+
+static void	ft_putfinish(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	exit(1);
 }

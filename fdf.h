@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/24 12:46:18 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:11:34 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_brsh
 	int	y0;
 	int	x1;
 	int	y1;
+	double	cs;
+	double	sn;
 	int	dx;
 	int	dy;
 	int	stepx;
@@ -65,9 +67,12 @@ void		ft_bresenham(t_data *data, int mx, int my);
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
 
-void		ft_putpixel(t_data *data, int mx, int my);
 int			ft_atoi_base(char *str, int base);
-void		ft_putfinish(char *str);
+void		ft_putpixel(t_data *data, int mx, int my);
+
+void		ft_key_zoom(int key, t_data *data);
+void		ft_key_move(int key, t_data *data);
+void		ft_key_degrees(int key, t_data *data);
 
 char		*get_next_line(int fd);
 char		*ft_export_line(char *str, char *s);
