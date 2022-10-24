@@ -39,8 +39,8 @@ static int	keyb(int key, t_data *data)
 	{
 		data->c = 2;
 		data->proyection = ISO;
-		//if (data->brsh.cs != cos(0.524) || data->brsh.sn != sin(0.524))
-		//	data->c = 1;
+		if (data->brsh.cs != 0.524 || data->brsh.sn != 0.524)
+			data->c = 1;
 		ft_draw_x(data, data->c);
 		data->c = 2;
 	}

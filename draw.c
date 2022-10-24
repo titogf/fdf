@@ -44,8 +44,8 @@ static void	ft_isometric(t_data *data, int mx, int my, int n)
 		data->brsh.x0 = mx * data->space;
 		data->brsh.y0 = my * data->space;
 		z = data->height[my][mx] * data->space;
-		x = (data->brsh.x0 - data->brsh.y0) * cos(0.524);
-		y = -z + (data->brsh.y0 + data->brsh.x0) / 2;
+		x = (data->brsh.x0 - data->brsh.y0) * cos(data->brsh.cs);
+		y = -z + (data->brsh.y0 + data->brsh.x0) * sin(data->brsh.sn);
 		data->brsh.x0 = x + data->posx;
 		data->brsh.y0 = y + data->posy;
 	}
@@ -54,8 +54,8 @@ static void	ft_isometric(t_data *data, int mx, int my, int n)
 		data->brsh.x1 = mx * data->space;
 		data->brsh.y1 = my * data->space;
 		z = data->height[my][mx] * data->space;
-		x = (data->brsh.x1 - data->brsh.y1) * cos(0.524);
-		y = -z + (data->brsh.y1 + data->brsh.x1) / 2;
+		x = (data->brsh.x1 - data->brsh.y1) * cos(data->brsh.cs);
+		y = -z + (data->brsh.y1 + data->brsh.x1) * sin(data->brsh.sn);
 		data->brsh.x1 = x + data->posx;
 		data->brsh.y1 = y + data->posy;
 	}
