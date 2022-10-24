@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/20 15:53:35 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 12:56:46 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	ft_legend(t_data *data, int n)
 	}
 	else
 		mlx_clear_window(data->mlx_ptr, data->win_ptr);
- 	c = "Press ESC to close the program";
+	c = "Press ESC to close the program";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 15, 666, c);
- 	c = "Press + or - to change the zoom";
+	c = "Press + or - to change the zoom";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 40, 666, c);
- 	c = "Press the arrows to move the map";
+	c = "Press the arrows to move the map";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 65, 666, c);
- 	c = "Press P to change to plant view";
+	c = "Press P to change to plant view";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 90, 666, c);
- 	c = "Press I to change to isometric view";
+	c = "Press I to change to isometric view";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 840, 115, 666, c);
 }
 

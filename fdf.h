@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/20 16:42:13 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/24 12:46:18 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	int		div2;
 	int		posx;
 	int		posy;
+	int		c;
 	t_brsh	brsh;
 }	t_data;
 
