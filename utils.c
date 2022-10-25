@@ -57,10 +57,12 @@ void	ft_putpixel(t_data *data, int mx, int my)
 {
 	double	x;
 	double	y;
+	int	color;
 
 	x = data->brsh.x0;
 	y = data->brsh.y0;
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, data->color[my][mx]);
+	color = data->color[my][mx];
+	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, color);
 }
 
 int	ft_atoi_base(char *str, int base)

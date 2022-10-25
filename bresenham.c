@@ -15,29 +15,6 @@
 static void	ft_brsh_negative(t_data *data);
 static void	ft_put_line(t_data *data, int n);
 
-void	ft_bresenham(t_data *data, int mx, int my)
-{
-	ft_brsh_negative(data);
-	if (data->brsh.dx > data->brsh.dy)
-	{
-		data->brsh.p = 2 * data->brsh.dy - data->brsh.dx;
-		while (data->brsh.x0 != data->brsh.x1)
-		{
-			ft_put_line(data, 1);
-			ft_putpixel(data, mx, my);
-		}
-	}
-	else
-	{
-		data->brsh.p = 2 * data->brsh.dx - data->brsh.dy;
-		while (data->brsh.y0 != data->brsh.y1)
-		{
-			ft_put_line(data, 2);
-			ft_putpixel(data, mx, my);
-		}
-	}
-}
-
 static void	ft_put_line(t_data *data, int n)
 {
 	if (n == 1)
@@ -79,5 +56,28 @@ static void	ft_brsh_negative(t_data *data)
 	{
 		data->brsh.dx = -data->brsh.dx;
 		data->brsh.stepx = -1;
+	}
+}
+
+void	ft_bresenham(t_data *data, int mx, int my)
+{
+	ft_brsh_negative(data);
+	if (data->brsh.dx > data->brsh.dy)
+	{
+		data->brsh.p = 2 * data->brsh.dy - data->brsh.dx;
+		while (data->brsh.x0 != data->brsh.x1)
+		{
+			ft_put_line(data, 1);
+			ft_putpixel(data, mx, my);
+		}
+	}
+	else
+	{
+		data->brsh.p = 2 * data->brsh.dx - data->brsh.dy;
+		while (data->brsh.y0 != data->brsh.y1)
+		{
+			ft_put_line(data, 2);
+			ft_putpixel(data, mx, my);
+		}
 	}
 }

@@ -61,8 +61,12 @@ void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, int fd);
 void		ft_get_map(t_data *data, char *av, int fd);
 void		ft_draw_x(t_data *data, int n);
+
 void		ft_legend(t_data *data, int n);
 void		ft_len1(t_data *data);
+
+void		ft_read_color(t_data *data, int fd);
+int			interpolate(int color1, int color2, float fraction);
 
 void		ft_bresenham(t_data *data, int mx, int my);
 

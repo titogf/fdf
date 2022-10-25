@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,8 @@
 
 #include "fdf.h"
 
-static void	ft_read_color(t_data *data, int fd);
-static void	ft_put_color(t_data *data, int x, int y, int c);
+static void	ft_len2(t_data *data, int space);
+static int	ft_len3(t_data *data, int space, int x, int y);
 
 void	ft_malloc(t_data *data, int fd)
 {
@@ -72,38 +72,71 @@ void	ft_get_map(t_data *data, char *av, int fd)
 	ft_read_color(data, fd);
 }
 
-static void	ft_read_color(t_data *data, int fd)
+void	ft_len1(t_data *data)
+{
+	int	size;
+	int	space;
+
+	size = data->columns * data->div2;
+	if (size < 20)
+		data->space = 20;
+	if (size > 19 && size < 30)
+		data->space = 14;
+	if (size > 29 && size < 60)
+		data->space = 8;
+	if (size > 59 && size < 80)
+		data->space = 6;
+	if (size > 79 && size < 110)
+		data->space = 4;
+	if (size > 109 && size < 160)
+		data->space = 2;
+	if (size > 159)
+		data->space = 1;
+	space = data->space;
+	data->posx = WIDE / 2 - data->columns / 2 * space / 2;
+	data->posy = HEIGHT / 2 - data->rows / 2 * space;
+	ft_len2(data, space);
+}
+
+static void	ft_len2(t_data *data, int space)
 {
 	int	x;
 	int	y;
-	int	c;
 
-	y = 0;
-	while (data->color[y] && y < data->rows)
+	if (data->space != 1)
 	{
-		x = 0;
-		while (x < data->columns)
+		y = -1;
+		while (++y < data->rows)
 		{
-			c = data->height[y][x];
-			if (c < 0)
-				c *= -1;
-			if (data->color[y][x] == -1)
-				ft_put_color(data, x, y, c);
-			x++;
+			x = -1;
+			while (++x < data->columns)
+			{
+				if (ft_len3(data, space, x, y) == 1)
+					return ;
+			}
 		}
-		y++;
 	}
-	close(fd);
 }
 
-static void	ft_put_color(t_data *data, int x, int y, int c)
+static int	ft_len3(t_data *data, int space, int x, int y)
 {
-	if (c == 0)
-		data->color[y][x] = 16777215;
-	else if (c < 31)
-		data->color[y][x] = 65280;
-	else if (c < 51)
-		data->color[y][x] = 8454658;
-	else if (c > 50)
-		data->color[y][x] = 12988888;
+	if (data->posx + x * space <= 0 || data->posx + x * space >= WIDE)
+	{
+		data->div2++;
+		ft_len1(data);
+		return (1);
+	}
+	if (data->posy + y * space - data->height[y][x] * space <= 0)
+	{
+		data->div2++;
+		ft_len1(data);
+		return (1);
+	}
+	if (data->posy + y * space - (data->height[y][x] * space) >= HEIGHT)
+	{
+		data->div2++;
+		ft_len1(data);
+		return (1);
+	}
+	return (0);
 }
