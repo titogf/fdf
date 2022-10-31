@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:49:42 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 17:04:12 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 18:50:37 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void	ft_len1(t_data *data)
 	space = data->space;
 	data->posx = WIDE / 2 - data->columns / 2 * space / 2;
 	data->posy = HEIGHT / 2 - data->rows / 2 * space;
-	ft_len2(data, space);
+	if (data->space != 1)
+		ft_len2(data, space);
 }
 
 static void	ft_len2(t_data *data, int space)
