@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:37:44 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 15:14:24 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:28:54 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	keyb(int key, t_data *data)
 	{
 		data->c = 2;
 		data->proyection = ISO;
-		if (data->brsh.cs != 0.524 || data->brsh.sn != 0.524)
+		if (data->proyection != ISO)
 			data->c = 1;
 		ft_draw_x(data, data->c);
 		data->c = 2;

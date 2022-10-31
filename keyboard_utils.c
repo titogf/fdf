@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:06:33 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 15:18:22 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:25:18 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ void	ft_key_degrees(int key, t_data *data)
 {
 	if (key == 18)
 	{
-		data->brsh.cs += 0.05;
+		data->brsh.alpha += 0.05;
 		ft_draw_x(data, data->c);
 	}
 	if (key == 19)
 	{
-		data->brsh.cs -= 0.05;
+		data->brsh.alpha -= 0.05;
 		ft_draw_x(data, data->c);
 	}
 	if (key == 20)
 	{
-		data->brsh.sn += 0.05;
+		data->brsh.beta += 0.05;
 		ft_draw_x(data, data->c);
 	}
 	ft_degrees(key, data);
@@ -81,19 +81,17 @@ static void	ft_degrees(int key, t_data *data)
 {
 	if (key == 21)
 	{
-		data->brsh.sn -= 0.05;
+		data->brsh.beta -= 0.05;
 		ft_draw_x(data, data->c);
 	}
 	if (key == 23)
 	{
-		data->brsh.cs += 0.05;
-		data->brsh.sn -= 0.05;
+		data->brsh.gamma += 0.05;
 		ft_draw_x(data, data->c);
 	}
 	if (key == 22)
 	{
-		data->brsh.cs -= 0.05;
-		data->brsh.sn += 0.05;
+		data->brsh.gamma -= 0.05;
 		ft_draw_x(data, data->c);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 14:37:06 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:29:41 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,20 @@
 
 typedef struct s_brsh
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	double	cs;
-	double	sn;
-	int	dx;
-	int	dy;
-	int	stepx;
-	int	stepy;
-	int	c1;
-	int	c2;
-	int	p;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+	double	alpha;
+	double	beta;
+	double	gamma;
+	int		dx;
+	int		dy;
+	int		stepx;
+	int		stepy;
+	int		c1;
+	int		c2;
+	int		p;
 }	t_brsh;
 
 typedef struct s_data
@@ -72,8 +73,8 @@ int			interpolate(int color1, int color2, float fraction);
 
 void		ft_bresenham(t_data *data);
 
-void		rotate_x(t_data *data, double alpha);
-void		rotate_y(t_data *data, double beta);
+void		rotate_x(t_data *data, double alpha, int mx, int my);
+void		rotate_y(t_data *data, double beta, int mx, int my);
 void		rotate_z(t_data *data, double gamma);
 
 char		**ft_split(char *s, char c);

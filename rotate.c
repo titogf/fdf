@@ -6,13 +6,13 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:55:04 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 15:18:27 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:50:17 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_x(t_data *data, double alpha)
+void	rotate_x(t_data *data, double alpha, int mx, int my)
 {
 	int	y;
 	int	z;
@@ -21,7 +21,7 @@ void	rotate_x(t_data *data, double alpha)
 	z = -data->brsh.y0 * sin(alpha) + data->height[my][mx] * cos(alpha);
 }
 
-void	rotate_y(t_data *data, double beta)
+void	rotate_y(t_data *data, double beta, int mx, int my)
 {
 	int	x;
 	int	z;

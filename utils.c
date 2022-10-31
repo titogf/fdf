@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 14:34:36 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:28:52 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void	ft_legend(t_data *data, int n)
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	if (n == 1)
 	{
-		data->brsh.cs = 0.524;
-		data->brsh.sn = 0.524;
+		data->brsh.alpha = 0;
+		data->brsh.beta = 0;
+		data->brsh.gamma = 0;
 		data->proyection = ISO;
 		data->div2 = 1;
 		ft_len1(data);
