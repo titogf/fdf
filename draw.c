@@ -79,7 +79,9 @@ static void	ft_draw_y(t_data *data)
 			}
 			else
 				ft_p_y(data, mx, my);
-			ft_bresenham(data, mx, my);
+			data->brsh.c1 = data->color[my][mx];
+			data->brsh.c2 = data->color[my + 1][mx];
+			ft_bresenham(data);
 		}
 	}
 }
@@ -103,7 +105,9 @@ void	ft_draw_x(t_data *data, int n)
 			}
 			else
 				ft_p_x(data, mx, my);
-			ft_bresenham(data, mx, my);
+			data->brsh.c1 = data->color[my][mx];
+			data->brsh.c2 = data->color[my][mx + 1];
+			ft_bresenham(data);
 		}
 	}
 	ft_draw_y(data);

@@ -53,15 +53,14 @@ static void	ft_degrees(t_data *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 45, 666, c);
 }
 
-void	ft_putpixel(t_data *data, int mx, int my)
+void	ft_putpixel(t_data *data, int color)
 {
 	double	x;
 	double	y;
-	int	color;
 
 	x = data->brsh.x0;
 	y = data->brsh.y0;
-	color = data->color[my][mx];
+	color = data->brsh.c2;
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, color);
 }
 

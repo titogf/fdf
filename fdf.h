@@ -37,6 +37,8 @@ typedef struct s_brsh
 	int	dy;
 	int	stepx;
 	int	stepy;
+	int	c1;
+	int	c2;
 	int	p;
 }	t_brsh;
 
@@ -68,13 +70,13 @@ void		ft_len1(t_data *data);
 void		ft_read_color(t_data *data, int fd);
 int			interpolate(int color1, int color2, float fraction);
 
-void		ft_bresenham(t_data *data, int mx, int my);
+void		ft_bresenham(t_data *data);
 
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
 
 int			ft_atoi_base(char *str, int base);
-void		ft_putpixel(t_data *data, int mx, int my);
+void		ft_putpixel(t_data *data, int color);
 
 void		ft_key_zoom(int key, t_data *data);
 void		ft_key_move(int key, t_data *data);
