@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 16:29:41 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:54:26 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ int			interpolate(int color1, int color2, float fraction);
 
 void		ft_bresenham(t_data *data);
 
-void		rotate_x(t_data *data, double alpha, int mx, int my);
-void		rotate_y(t_data *data, double beta, int mx, int my);
-void		rotate_z(t_data *data, double gamma);
+void		ft_rotate(t_data *data, int mx, int my, int n);
 
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);
