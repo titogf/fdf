@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/24 16:50:40 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 14:37:06 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 
 # define BUFFER_SIZE 100
-# define HEIGHT 900 //altura ventana
-# define WIDE 1200 //anchura ventana
+# define HEIGHT 900
+# define WIDE 1200
 # define PIXEL 50
 # define ISO 1
 # include <stdlib.h>
@@ -71,6 +71,10 @@ void		ft_read_color(t_data *data, int fd);
 int			interpolate(int color1, int color2, float fraction);
 
 void		ft_bresenham(t_data *data);
+
+void		rotate_x(t_data *data, double alpha);
+void		rotate_y(t_data *data, double beta);
+void		rotate_z(t_data *data, double gamma);
 
 char		**ft_split(char *s, char c);
 char		**ft_splitfree(char **str);

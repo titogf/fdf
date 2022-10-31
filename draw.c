@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/24 17:37:11 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:12:36 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,12 @@ void	ft_draw_x(t_data *data, int n)
 		mx = -1;
 		while (++mx < data->columns - 1)
 		{
+			ft_p_x(data, mx, my);
 			if (data->proyection == ISO)
 			{
 				ft_isometric(data, mx, my, 0);
 				ft_isometric(data, mx + 1, my, 1);
 			}
-			else
-				ft_p_x(data, mx, my);
 			data->brsh.c1 = data->color[my][mx];
 			data->brsh.c2 = data->color[my][mx + 1];
 			ft_bresenham(data);

@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:48:15 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 13:14:54 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 14:32:27 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	interpolate(int color1, int color2, float fraction)
 	g[1] = (color2 >> 8) & 0xff;
 	b[0] = color1 & 0xff;
 	b[1] = color2 & 0xff;
-	return (int) ((r[1] - r[0]) * fraction + r[0]) << 16 |
-		(int) ((g[1] - g[0]) * fraction + g[0]) << 8 |
-		(int) ((b[1] - b[0]) * fraction + b[0]);
+	return ((int)((r[1] - r[0]) * fraction + r[0]) << 16 |
+		(int)((g[1] - g[0]) * fraction + g[0]) << 8 |
+		(int)((b[1] - b[0]) * fraction + b[0]));
 }
