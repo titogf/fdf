@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/24 16:49:49 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:57:37 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	ft_putpixel(t_data *data, int color)
 
 	x = data->brsh.x0;
 	y = data->brsh.y0;
-	color = data->brsh.c2;
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, color);
 }
 
