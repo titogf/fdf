@@ -94,6 +94,8 @@ void	ft_len1(t_data *data)
 	if (size > 159)
 		data->space = 1;
 	data->posx = WIDE / 2 - data->columns / 2 * data->space / 2;
+	if (data->rows > data->columns)
+		data->posx = WIDE / 2 - data->columns / 2 * data->space / 20;
 	data->posy = HEIGHT / 2 - data->rows / 2 * data->space;
 	if (data->space != 1)
 		ft_len2(data);
