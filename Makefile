@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRC = fdf.c keyboard.c keyboard_utils.c color.c map.c bresenham.c rotate.c  draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRC = fdf.c keyboard.c keyboard_utils.c color.c map.c bresenham.c rotate.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 CC = gcc
 
