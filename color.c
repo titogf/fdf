@@ -42,12 +42,12 @@ static void	ft_put_color(t_data *data, int x, int y, int c)
 {
 	if (c == 0)
 		data->color[y][x] = 16777215;
-	else if (c < 31)
+	else if (c < 21)
 		data->color[y][x] = 65280;
-	else if (c < 51)
-		data->color[y][x] = 8454658;
-	else if (c > 50)
+	else if (c < 41)
 		data->color[y][x] = 12988888;
+	else
+		data->color[y][x] = 8454658;
 }
 
 int	interpolate(int color1, int color2, float fraction)
