@@ -62,9 +62,9 @@ typedef struct s_data
 
 void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, char *av, int fd);
-void		ft_draw_x(t_data *data, int wide, int height, int n);
+void		ft_draw_x(t_data *data, int n);
 
-void		ft_legend(t_data *data, int wide, int height, int n);
+void		ft_legend(t_data *data, int n);
 void		ft_len1(t_data *data);
 
 void		ft_read_color(t_data *data, int fd);

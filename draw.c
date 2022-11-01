@@ -85,12 +85,12 @@ static void	ft_draw_y(t_data *data)
 	}
 }
 
-void	ft_draw_x(t_data *data, int wide, int height, int n)
+void	ft_draw_x(t_data *data, int n)
 {
 	int	mx;
 	int	my;
 
-	ft_legend(data, wide, height, n);
+	ft_legend(data, n);
 	my = -1;
 	while (++my < data->rows)
 	{
