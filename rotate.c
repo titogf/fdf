@@ -32,12 +32,14 @@ static void	rotate_x(t_data *data, double alpha, int mx, int my, int n)
 	{
 		y = data->brsh.y0 * cos(alpha) + data->height[my][mx] * sin(alpha);
 		z = -data->brsh.y0 * sin(alpha) + data->height[my][mx] * cos(alpha);
+	data->brsh.y0 = z;
 		data->brsh.y0 = y;
 	}
 	if (n == 1)
 	{
 		y = data->brsh.y1 * cos(alpha) + data->height[my][mx] * sin(alpha);
 		z = -data->brsh.y1 * sin(alpha) + data->height[my][mx] * cos(alpha);
+	data->brsh.y1 = z;
 		data->brsh.y1 = y;
 	}
 }
@@ -49,6 +51,7 @@ static void	rotate_y(t_data *data, double beta, int mx, int my)
 
 	x = data->brsh.x0 * cos(beta) + data->height[my][mx] * sin(beta);
 	z = -data->brsh.x0 * sin(beta) + data->height[my][mx] * cos(beta);
+	data->brsh.x0 = z;
 	data->brsh.x0 = x;
 }
 

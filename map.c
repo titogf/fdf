@@ -12,10 +12,11 @@
 
 #include "fdf.h"
 
-static void	ft_len2(t_data *data, int space);
-static int	ft_len3(t_data *data, int space, int x, int y);
+static void	ft_get_map(t_data *data, char *av, int fd);
+static void	ft_len2(t_data *data);
+static int	ft_len3(t_data *data, int x, int y);
 
-void	ft_malloc(t_data *data, int fd)
+void	ft_malloc(t_data *data, char *av, int fd)
 {
 	int		i;
 	char	*line;
@@ -41,9 +42,10 @@ void	ft_malloc(t_data *data, int fd)
 		data->height[i] = malloc(sizeof(int *) * data->columns);
 		data->color[i] = malloc(sizeof(int *) * data->columns);
 	}
+	ft_get_map(data, av, fd);
 }
 
-void	ft_get_map(t_data *data, char *av, int fd)
+static void	ft_get_map(t_data *data, char *av, int fd)
 {
 	char	**str;
 	char	**s;
@@ -75,7 +77,6 @@ void	ft_get_map(t_data *data, char *av, int fd)
 void	ft_len1(t_data *data)
 {
 	int	size;
-	int	space;
 
 	size = data->columns * data->div2;
 	if (size < 20)
@@ -92,35 +93,34 @@ void	ft_len1(t_data *data)
 		data->space = 2;
 	if (size > 159)
 		data->space = 1;
-	space = data->space;
-	data->posx = WIDE / 2 - data->columns / 2 * space / 2;
-	data->posy = HEIGHT / 2 - data->rows / 2 * space;
+	data->posx = WIDE / 2 - data->columns / 2 * data->space / 2;
+	data->posy = HEIGHT / 2 - data->rows / 2 * data->space;
 	if (data->space != 1)
-		ft_len2(data, space);
+		ft_len2(data);
 }
 
-static void	ft_len2(t_data *data, int space)
+static void	ft_len2(t_data *data)
 {
 	int	x;
 	int	y;
 
-	if (data->space != 1)
+	y = -1;
+	while (++y < data->rows)
 	{
-		y = -1;
-		while (++y < data->rows)
+		x = -1;
+		while (++x < data->columns)
 		{
-			x = -1;
-			while (++x < data->columns)
-			{
-				if (ft_len3(data, space, x, y) == 1)
-					return ;
-			}
+			if (ft_len3(data, x, y) == 1)
+				return ;
 		}
 	}
 }
 
-static int	ft_len3(t_data *data, int space, int x, int y)
+static int	ft_len3(t_data *data, int x, int y)
 {
+	int	space;
+
+	space = data->space;
 	if (data->posx + x * space <= 0 || data->posx + x * space >= WIDE)
 	{
 		data->div2++;

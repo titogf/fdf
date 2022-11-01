@@ -15,7 +15,7 @@
 static int	ft_return_nb(char *str, int i, int base);
 static void	ft_degrees(t_data *data);
 
-void	ft_legend(t_data *data, int n)
+void	ft_legend(t_data *data, int wide, int height, int n)
 {
 	char	*c;
 
@@ -28,6 +28,8 @@ void	ft_legend(t_data *data, int n)
 		data->proyection = ISO;
 		data->div2 = 1;
 		ft_len1(data);
+		data->posx = wide / 2 - data->columns / 2 * data->space / 2;
+		data->posy = height / 2 - data->rows / 2 * data->space;
 	}
 	c = "Press ESC to close the program";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 5, 666, c);

@@ -12,6 +12,7 @@
 
 #include "fdf.h"
 
+static int	ft_wrong(int ac, char *av);
 static void	ft_putfinish(char *str);
 
 void	checkleaks(void)
@@ -22,26 +23,42 @@ void	checkleaks(void)
 int	main(int ac, char **av)
 {
 	int		fd;
+	int		wide;
+	int		height;
 	t_data	data;
 
 	atexit(checkleaks);
-	if (ac != 2)
-		ft_putfinish("WRONG PARAMETERS\n");
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		ft_putfinish("WRONG MAP\n");
+	fd = ft_wrong(ac, av[1]);
+	ft_malloc(&data, av[1], fd);
+	wide = 1200;
+	height = 900;
+	if (data.columns > 70)
+	{
+		wide = 2000;
+		height = 1300;
+	}
 	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDE, HEIGHT, "FDF");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, wide, height, "FDF");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
 		ft_putfinish("WRONG WINDOW\n");
 	}
-	ft_malloc(&data, fd);
-	ft_get_map(&data, av[1], fd);
-	ft_draw_x(&data, 1);
+	ft_draw_x(&data, wide, height, 1);
 	ft_window(&data);
 	return (0);
+}
+
+static int	ft_wrong(int ac, char *av)
+{
+	int	fd;
+
+	if (ac != 2)
+		ft_putfinish("WRONG PARAMETERS\n");
+	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		ft_putfinish("WRONG MAP\n");
+	return (fd);
 }
 
 static void	ft_putfinish(char *str)
