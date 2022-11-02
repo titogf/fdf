@@ -6,72 +6,51 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:55:04 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 17:06:32 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:42:35 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	rotate_x(t_data *data, double alpha, int mx, int my, int n);
-static void	rotate_y(t_data *data, double beta, int mx, int my);
-static void	rotate_z(t_data *data, double gamma, int n);
+static void	rotate_x(int y, int z, double alpha);
+static void	rotate_y(int x, int z, double beta);
+static void	rotate_z(int x, int y, double gamma);
 
-void	ft_rotate(t_data *data, int mx, int my, int n)
+void	ft_rotate(t_data *data)
 {
-	rotate_x(data, data->brsh.alpha, mx, my, n);
-	rotate_y(data, data->brsh.beta, mx, my);
-	rotate_z(data, data->brsh.gamma, n);
+	rotate_x(data->brsh.y0, data->brsh.z0, data->brsh.alpha);
+	rotate_y(data->brsh.x0, data->brsh.z0, data->brsh.beta);
+	rotate_z(data->brsh.x0, data->brsh.y0, data->brsh.gamma);
+	rotate_x(data->brsh.y1, data->brsh.z1, data->brsh.alpha);
+	rotate_y(data->brsh.x1, data->brsh.z1, data->brsh.beta);
+	rotate_z(data->brsh.x1, data->brsh.y1, data->brsh.gamma);
 }
 
-static void	rotate_x(t_data *data, double alpha, int mx, int my, int n)
+static void	rotate_x(int y, int z, double alpha)
 {
-	int	y;
-	int	z;
+	int	p_y;
 
-	if (n == 0)
-	{
-		y = data->brsh.y0 * cos(alpha) + data->height[my][mx] * sin(alpha);
-		z = -data->brsh.y0 * sin(alpha) + data->height[my][mx] * cos(alpha);
-	data->brsh.y0 = z;
-		data->brsh.y0 = y;
-	}
-	if (n == 1)
-	{
-		y = data->brsh.y1 * cos(alpha) + data->height[my][mx] * sin(alpha);
-		z = -data->brsh.y1 * sin(alpha) + data->height[my][mx] * cos(alpha);
-	data->brsh.y1 = z;
-		data->brsh.y1 = y;
-	}
+	p_y = y;
+	y = p_y * cos(alpha) + z * sin(alpha);
+	z = -p_y * sin(alpha) + z * cos(alpha);
 }
 
-static void	rotate_y(t_data *data, double beta, int mx, int my)
+static void	rotate_y(int x, int z, double beta)
 {
-	int	x;
-	int	z;
+	int	p_x;
 
-	x = data->brsh.x0 * cos(beta) + data->height[my][mx] * sin(beta);
-	z = -data->brsh.x0 * sin(beta) + data->height[my][mx] * cos(beta);
-	data->brsh.x0 = z;
-	data->brsh.x0 = x;
+	p_x = x;
+	x = p_x * cos(beta) + z * sin(beta);
+	z = -p_x * sin(beta) + z * cos(beta);
 }
 
-static void	rotate_z(t_data *data, double gamma, int n)
+static void	rotate_z(int x, int y, double gamma)
 {
-	int	x;
-	int	y;
+	int	p_x;
+	int	p_y;
 
-	if (n == 0)
-	{
-		x = data->brsh.x0 * cos(gamma) - data->brsh.y0 * sin(gamma);
-		y = data->brsh.x0 * sin(gamma) + data->brsh.y0 * cos(gamma);
-		data->brsh.x0 = x;
-		data->brsh.y0 = y;
-	}
-	if (n == 1)
-	{
-		x = data->brsh.x1 * cos(gamma) - data->brsh.y1 * sin(gamma);
-		y = data->brsh.x1 * sin(gamma) + data->brsh.y1 * cos(gamma);
-		data->brsh.x1 = x;
-		data->brsh.y1 = y;
-	}
+	p_x = x;
+	p_y = y;
+	x = p_x * cos(gamma) - p_y * sin(gamma);
+	y = p_x * sin(gamma) + p_y * cos(gamma);
 }
