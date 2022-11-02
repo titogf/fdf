@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/02 17:51:40 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:01:28 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 typedef struct s_brsh
 {
 	int		x0;
-	int		y0;
 	int		x1;
+	int		y0;
 	int		y1;
 	int		z0;
 	int		z1;
