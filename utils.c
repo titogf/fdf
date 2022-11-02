@@ -12,9 +12,10 @@
 
 #include "fdf.h"
 # define BLUE 760
+# define B2 0xFFFFF
 
 static int	ft_return_nb(char *str, int i, int base);
-static void	ft_degrees(t_data *data);
+static void	ft_legend_2(t_data *data);
 
 void	ft_legend(t_data *data, int n)
 {
@@ -30,29 +31,39 @@ void	ft_legend(t_data *data, int n)
 		data->div2 = 1;
 		ft_len1(data);
 	}
-	c = "Press ESC to close the program";
+	c = "->To close the program";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 5, BLUE, c);
-	c = "Press + or - to change the zoom";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 25, BLUE, c);
-	c = "Press the arrows to move the map";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 45, BLUE, c);
-	c = "Press P to change to plant view";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 65, BLUE, c);
-	c = "Press I to change to isometric view";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 85, BLUE, c);
-	ft_degrees(data);
+	c = "-Press ESC";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 25, B2, c);
+	c = "-Press the red cross";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 45, B2, c);
+	c = "->To move the map";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 275, 5, BLUE, c);
+	ft_legend_2(data);
 }
 
-static void	ft_degrees(t_data *data)
+static void	ft_legend_2(t_data *data)
 {
 	char	*c;
 
-	c = "Press 1/2 to change X degrees";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 5, BLUE, c);
-	c = "Press 3/4 to change Y degrees";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 25, BLUE, c);
-	c = "Press 5/6 to change Z degrees";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 45, BLUE, c);
+	c = "-Press the rows to displace";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 310, 25, B2, c);
+	c = "-Press +/- to change the zoom";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 310, 45, B2, c);
+	c = "->To change the view:";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 635, 5, BLUE, c);
+	c = "-Press P to plant view";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 670, 25, B2, c);
+	c = "-Press I to isometric view";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 670, 45, B2, c);
+	c = "->To change degrees";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 955, 5, BLUE, c);
+	c = "-Press 1/2 X degrees";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 990, 25, B2, c);
+	c = "-Press 3/4 Y degrees";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 990, 45, B2, c);
+	c = "-Press 5/6 Z degrees";
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 990, 65, B2, c);
 }
 
 void	ft_putpixel(t_data *data, int color)
