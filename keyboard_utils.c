@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:06:33 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/02 16:53:13 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:10:56 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,21 @@ void	ft_key_zoom(int key, t_data *data)
 	if (key == 30 || key == 69)
 	{
 		data->space += 1;
-		data->posx -= 10;
-		data->posy -= 10;
+		if (data->proyection != ISO)
+		{
+			data->posx -= 10;
+			data->posy -= 10;
+		}
 		ft_draw_x(data, data->c);
 	}
 	if (key == 44 || key == 78)
 	{
 		data->space -= 1;
-		data->posx += 10;
-		data->posy += 10;
+		if (data->proyection != ISO)
+		{
+			data->posx += 10;
+			data->posy += 10;
+		}
 		ft_draw_x(data, data->c);
 	}
 }
