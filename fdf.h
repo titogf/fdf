@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 16:54:26 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:28:51 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define WIDE 1200
 # define PIXEL 50
 # define ISO 1
+# define BLUE 760
+# define B2 0xFFFFF
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>

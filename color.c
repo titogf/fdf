@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:48:15 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 15:37:48 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:36:25 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_read_color(t_data *data, int fd)
 	int	c;
 
 	y = 0;
-	while (data->color[y] && y < data->rows)
+	while (y < data->rows)
 	{
 		x = 0;
 		while (x < data->columns)

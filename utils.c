@@ -6,13 +6,11 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:51:01 by gfernand          #+#    #+#             */
-/*   Updated: 2022/10/31 17:06:10 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:27:57 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-# define BLUE 760
-# define B2 0xFFFFF
 
 static int	ft_return_nb(char *str, int i, int base);
 static void	ft_legend_2(t_data *data);
