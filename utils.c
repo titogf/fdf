@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+# define BLUE 760
 
 static int	ft_return_nb(char *str, int i, int base);
 static void	ft_degrees(t_data *data);
@@ -30,15 +31,15 @@ void	ft_legend(t_data *data, int n)
 		ft_len1(data);
 	}
 	c = "Press ESC to close the program";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 5, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 5, BLUE, c);
 	c = "Press + or - to change the zoom";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 25, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 25, BLUE, c);
 	c = "Press the arrows to move the map";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 45, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 45, BLUE, c);
 	c = "Press P to change to plant view";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 420, 5, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 65, BLUE, c);
 	c = "Press I to change to isometric view";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 420, 25, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 85, BLUE, c);
 	ft_degrees(data);
 }
 
@@ -47,11 +48,11 @@ static void	ft_degrees(t_data *data)
 	char	*c;
 
 	c = "Press 1/2 to change X degrees";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 5, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 5, BLUE, c);
 	c = "Press 3/4 to change Y degrees";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 25, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 25, BLUE, c);
 	c = "Press 5/6 to change Z degrees";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 45, 666, c);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 900, 45, BLUE, c);
 }
 
 void	ft_putpixel(t_data *data, int color)
