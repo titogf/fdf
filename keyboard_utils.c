@@ -29,7 +29,10 @@ void	ft_key_proyection(int key, t_data *data)
 		data->c = 2;
 		data->proyection = ISO;
 		if (data->brsh.alpha != 0 || data->brsh.beta != 0)
+		{
+			if (data->brsh.gamma != 0)
 			data->c = 1;
+		}
 		ft_draw_x(data, data->c);
 		data->c = 2;
 	}
@@ -37,24 +40,23 @@ void	ft_key_proyection(int key, t_data *data)
 
 void	ft_key_zoom(int key, t_data *data)
 {
+	int n;
+
+	n = 10;
+	if (data->proyection == ISO)
+		n = 4;
 	if (key == 30 || key == 69)
 	{
 		data->space += 1;
-		if (data->proyection != ISO)
-		{
-			data->posx -= 10;
-			data->posy -= 10;
-		}
+		data->posx -= n;
+		data->posy -= n;
 		ft_draw_x(data, data->c);
 	}
 	if (key == 44 || key == 78)
 	{
 		data->space -= 1;
-		if (data->proyection != ISO)
-		{
-			data->posx += 10;
-			data->posy += 10;
-		}
+		data->posx += n;
+		data->posy += n;
 		ft_draw_x(data, data->c);
 	}
 }
