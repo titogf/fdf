@@ -24,11 +24,11 @@ static void	ft_isometric(t_data *data)
 
 	x = (data->brsh.x0 - data->brsh.y0) * cos(0.524);
 	y = -data->brsh.z0 + (data->brsh.y0 + data->brsh.x0) * sin(0.524);
-	data->brsh.x0 = x;
+	data->brsh.x0 = x + data->columns * data->space / 2;
 	data->brsh.y0 = y;
 	x = (data->brsh.x1 - data->brsh.y1) * cos(0.524);
 	y = -data->brsh.z1 + (data->brsh.y1 + data->brsh.x1) * sin(0.524);
-	data->brsh.x1 = x;
+	data->brsh.x1 = x + data->columns * data->space / 2;
 	data->brsh.y1 = y;
 }
 
