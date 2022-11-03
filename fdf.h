@@ -84,6 +84,7 @@ char		**ft_splitfree(char **str);
 int			ft_atoi_base(char *str, int base);
 void		ft_putpixel(t_data *data, int color);
 
+void		ft_key_proyection(int key, t_data *data);
 void		ft_key_zoom(int key, t_data *data);
 void		ft_key_move(int key, t_data *data);
 void		ft_key_degrees(int key, t_data *data);

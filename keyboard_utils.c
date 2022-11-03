@@ -14,6 +14,27 @@
 
 static void	ft_degrees(int key, t_data *data);
 
+void	ft_key_proyection(int key, t_data *data)
+{
+	if (key == 35)
+	{
+		data->proyection = 2;
+		data->brsh.alpha = 0;
+		data->brsh.beta = 0;
+		data->brsh.gamma = 0;
+		ft_draw_x(data, 2);
+	}
+	if (key == 34)
+	{
+		data->c = 2;
+		data->proyection = ISO;
+		if (data->brsh.alpha != 0 || data->brsh.beta != 0)
+			data->c = 1;
+		ft_draw_x(data, data->c);
+		data->c = 2;
+	}
+}
+
 void	ft_key_zoom(int key, t_data *data)
 {
 	if (key == 30 || key == 69)
@@ -69,17 +90,17 @@ void	ft_key_move(int key, t_data *data)
 
 void	ft_key_degrees(int key, t_data *data)
 {
-	if (key == 18)
+	if (key == 18 || key == 83)
 	{
 		data->brsh.alpha += 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 19)
+	if (key == 19 || key == 84)
 	{
 		data->brsh.alpha -= 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 20)
+	if (key == 20 || key == 85)
 	{
 		data->brsh.beta += 0.05;
 		ft_draw_x(data, data->c);
@@ -89,17 +110,17 @@ void	ft_key_degrees(int key, t_data *data)
 
 static void	ft_degrees(int key, t_data *data)
 {
-	if (key == 21)
+	if (key == 21 || key == 86)
 	{
 		data->brsh.beta -= 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 23)
+	if (key == 23 || key == 87)
 	{
 		data->brsh.gamma += 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 22)
+	if (key == 22 || key == 88)
 	{
 		data->brsh.gamma -= 0.05;
 		ft_draw_x(data, data->c);

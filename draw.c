@@ -84,6 +84,7 @@ static void	ft_draw_y(t_data *data)
 		while (++my < data->rows - 1)
 		{
 			ft_p_v(data, mx, my, 2);
+			ft_rotate(data);
 			if (data->proyection == ISO)
 				ft_isometric(data);
 			ft_colocation(data, mx, my, 2);
@@ -105,6 +106,7 @@ void	ft_draw_x(t_data *data, int n)
 		while (++mx < data->columns - 1)
 		{
 			ft_p_v(data, mx, my, 1);
+			ft_rotate(data);
 			if (data->proyection == ISO)
 				ft_isometric(data);
 			ft_colocation(data, mx, my, 1);

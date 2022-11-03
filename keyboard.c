@@ -30,20 +30,7 @@ static int	keyb(int key, t_data *data)
 		data->win_ptr = NULL;
 		exit(1);
 	}
-	if (key == 35)
-	{
-		data->proyection = 2;
-		ft_draw_x(data, 2);
-	}
-	if (key == 34)
-	{
-		data->c = 2;
-		data->proyection = ISO;
-		if (data->brsh.alpha != 0 || data->brsh.beta != 0)
-			data->c = 1;
-		ft_draw_x(data, data->c);
-		data->c = 2;
-	}
+	ft_key_proyection(key, data);
 	ft_key_degrees(key, data);
 	ft_key_zoom(key, data);
 	ft_key_move(key, data);
