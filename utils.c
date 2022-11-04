@@ -58,9 +58,9 @@ static void	ft_legend_2(t_data *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 955, 5, BLUE, c);
 	c = "-Press 1/2 X degrees";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 990, 25, B2, c);
-	c = "-Press 3/4 Y degrees";
+	c = "-Press 5/6 Y degrees";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 990, 45, B2, c);
-	c = "-Press 5/6 Z degrees";
+	c = "-Press 9/0 Z degrees";
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 990, 65, B2, c);
 }
 

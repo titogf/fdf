@@ -109,7 +109,7 @@ void	ft_key_degrees(int key, t_data *data)
 		data->brsh.alpha -= 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 20 || key == 85)
+	if (key == 23 || key == 88)
 	{
 		data->brsh.beta += 0.05;
 		ft_draw_x(data, data->c);
@@ -119,17 +119,17 @@ void	ft_key_degrees(int key, t_data *data)
 
 static void	ft_degrees(int key, t_data *data)
 {
-	if (key == 21 || key == 86)
+	if (key == 22 || key == 88)
 	{
 		data->brsh.beta -= 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 23 || key == 87)
+	if (key == 25 || key == 92)
 	{
 		data->brsh.gamma += 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 22 || key == 88)
+	if (key == 29 || key == 82)
 	{
 		data->brsh.gamma -= 0.05;
 		ft_draw_x(data, data->c);
