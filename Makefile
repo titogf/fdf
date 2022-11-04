@@ -2,6 +2,11 @@ NAME = fdf
 
 SRC = fdf.c keyboard.c keyboard_utils.c color.c map.c bresenham.c rotate.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
+RED	= '\033[1;31m'
+GREEN	= '\033[1;32m'
+BLUE	= '\033[1;34m'
+WHITE	= '\033[1;37m'
+
 CC = gcc
 
 OBJS = $(SRC:.c=.o)
@@ -14,10 +19,10 @@ MINIFLG = -L./minilibx -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo Generating enforcible...
+	@echo $(GREEN)"Generating enforcible..."$(WHITE)
 	@make -C minilibx
 	$(CC) $(FLAGS) $(OBJS) $(MINILIBX) $(MINIFLG) -o $(NAME)
-	@echo $(NAME) Generated!
+	@echo $(GREEN)"$(NAME) Generated!"$(WHITE)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
@@ -25,11 +30,13 @@ $(NAME): $(OBJS)
 clean:
 	@make clean -C minilibx
 	rm -f $(OBJS)
+	@echo $(RED)"OBJS were deleted"$(WHITE)
 
 fclean:
 	rm -f $(NAME)
+	@echo $(RED)"$(NAME) deleted"$(WHITE)
 
 re: fclean all
 
 n:
-	norminette $(SRC)
+	@echo $(BLUE)"norminette"$(WHITE) $(SRC)
