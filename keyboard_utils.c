@@ -41,23 +41,29 @@ void	ft_key_proyection(int key, t_data *data)
 
 void	ft_key_zoom(int key, t_data *data)
 {
-	int n;
+	int	n;
+	int	c;
 
 	n = 10;
+	c = 4;
 	if (data->proyection == ISO)
 		n = 4;
+	if (data->columns > 200)
+		n = 200;
+	if (data->columns > 200)
+		c = 200;
 	if (key == 30 || key == 69)
 	{
 		data->space += 1;
 		data->posx -= n;
-		data->posy -= 4;
+		data->posy -= c;
 		ft_draw_x(data, data->c);
 	}
 	if (key == 44 || key == 78)
 	{
 		data->space -= 1;
 		data->posx += n;
-		data->posy += 4;
+		data->posy += c;
 		ft_draw_x(data, data->c);
 	}
 }
