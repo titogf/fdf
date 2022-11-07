@@ -12,15 +12,22 @@
 
 #include "fdf.h"
 
-static int	ft_wrong(int ac, char *av);
+static void	ft_wrong(int ac, char *av);
 static void	ft_putfinish(char *str);
+
+static void	check()
+{
+	system("leaks fdf");
+}
 
 int	main(int ac, char **av)
 {
 	int		fd;
 	t_data	data;
 
-	fd = ft_wrong(ac, av[1]);
+	atexit(check);
+	ft_wrong(ac, av[1]);
+	fd = open(av[1], O_RDONLY);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDE, HEIGHT, "FDF");
 	if (data.win_ptr == NULL)
@@ -34,16 +41,24 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-static int	ft_wrong(int ac, char *av)
+static void	ft_wrong(int ac, char *av)
 {
 	int	fd;
+	int	fd_dir;
 
 	if (ac != 2)
 		ft_putfinish("WRONG PARAMETERS\n");
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_putfinish("WRONG MAP\n");
-	return (fd);
+	else
+	{
+		fd_dir = open(av, O_DIRECTORY);
+		if (fd_dir != -1)
+			ft_putfinish("PATH IS DIRECTORY\n");
+		close(fd_dir);
+	}
+	close (fd);
 }
 
 static void	ft_putfinish(char *str)
