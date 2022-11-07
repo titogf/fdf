@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/02 16:37:15 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:25:13 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 static int	ft_wrong(int ac, char *av);
 static void	ft_putfinish(char *str);
 
-void	checkleaks(void)
-{
-	system("leaks fdf");
-}
-
 int	main(int ac, char **av)
 {
 	int		fd;
 	t_data	data;
 
-	atexit(checkleaks);
 	fd = ft_wrong(ac, av[1]);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDE, HEIGHT, "FDF");
