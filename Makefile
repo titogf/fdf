@@ -39,4 +39,4 @@ fclean:
 re: fclean all
 
 n:
-	norminette $(SRC) fdf.h
+	"norminette" $(SRC) fdf.h
