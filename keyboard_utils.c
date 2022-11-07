@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:06:33 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/02 19:39:00 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:56:58 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_key_degrees(int key, t_data *data)
 		data->brsh.alpha -= 0.05;
 		ft_draw_x(data, data->c);
 	}
-	if (key == 23 || key == 88)
+	if (key == 23 || key == 87)
 	{
 		data->brsh.beta += 0.05;
 		ft_draw_x(data, data->c);
