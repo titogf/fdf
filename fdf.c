@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/07 12:25:13 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:03:52 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	ft_wrong(int ac, char *av);
 static void	ft_putfinish(char *str);
+static void	ft_map(char *av);
 
 static void	check()
 {
@@ -55,10 +56,32 @@ static void	ft_wrong(int ac, char *av)
 	{
 		fd_dir = open(av, O_DIRECTORY);
 		if (fd_dir != -1)
-			ft_putfinish("PATH IS DIRECTORY\n");
+			ft_putfinish("PATH IS A DIRECTORY\n");
 		close(fd_dir);
 	}
 	close (fd);
+	ft_map(av);
+}
+
+static void	ft_map(char *av)
+{
+	int	i;
+	int	c;
+
+	i = 0;
+	c = 0;
+	while (av[i])
+		i++;
+	if (av[--i] == 'f')
+		c = 1;
+	if (av[--i] == 'd')
+		c = 1;
+	if (av[--i] == 'f')
+		c = 1;
+	if (av[--i] == '.')
+		c = 1;
+	if (c == 0)
+		ft_putfinish("WRONG MAP\n");
 }
 
 static void	ft_putfinish(char *str)

@@ -39,4 +39,4 @@ fclean:
 re: fclean all
 
 n:
-	@echo $(BLUE)"norminette"$(WHITE) $(SRC)
+	norminette $(SRC) fdf.h

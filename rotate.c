@@ -6,13 +6,13 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:55:04 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/07 12:26:36 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:21:06 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	rotate_x(t_data *data, double alpha,int n);
+static void	rotate_x(t_data *data, double alpha, int n);
 static void	rotate_y(t_data *data, double beta, int n);
 static void	rotate_z(t_data *data, double gamma, int n);
 
