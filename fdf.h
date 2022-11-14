@@ -84,6 +84,7 @@ void		ft_black(t_data *data);
 void		ft_menu(t_data *data);
 void		ft_legend(t_data *data, int n);
 void		ft_len1(t_data *data);
+void		ft_putfinish(char *str);
 
 void		ft_read_color(t_data *data, int fd);
 int			interpolate(int color1, int color2, float fraction);

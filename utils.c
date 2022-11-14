@@ -13,6 +13,7 @@
 #include "fdf.h"
 
 static int	ft_return_nb(char *str, int i, int base);
+static void	ft_check(char *str, int i, int base);
 
 void	ft_legend(t_data *data, int n)
 {
@@ -26,6 +27,19 @@ void	ft_legend(t_data *data, int n)
 		ft_len1(data);
 	}
 	ft_menu(data);
+}
+
+void	ft_putfinish(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	exit(1);
 }
 
 int	ft_atoi_base(char *str, int base)
@@ -49,6 +63,7 @@ int	ft_atoi_base(char *str, int base)
 	}
 	while (str[i])
 	{
+		ft_check(str, i, base);
 		nb = nb * base;
 		nb = nb + ft_return_nb(str, i, base);
 		i++;
@@ -72,4 +87,13 @@ static int	ft_return_nb(char *str, int i, int base)
 		j++;
 	}
 	return (-1);
+}
+
+static void	ft_check(char *str, int i, int base)
+{
+	int	check;
+
+	check = ft_return_nb(str, i, base);
+	if (check == -1)
+		ft_putfinish("CHECK THE MAP DATA\n");
 }

@@ -13,7 +13,6 @@
 #include "fdf.h"
 
 static void	ft_wrong(int ac, char *av);
-static void	ft_putfinish(char *str);
 static void	ft_map(char *av);
 
 int	main(int ac, char **av)
@@ -77,17 +76,4 @@ static void	ft_map(char *av)
 		c = 1;
 	if (c == 0)
 		ft_putfinish("WRONG MAP\n");
-}
-
-static void	ft_putfinish(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	exit(1);
 }
