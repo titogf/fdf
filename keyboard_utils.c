@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:06:33 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/10 16:13:43 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:03:58 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_key_proyection(int key, t_data *data)
 		data->brsh.alpha = 0;
 		data->brsh.beta = 0;
 		data->brsh.gamma = 0;
+		ft_black(data);
 		ft_draw_x(data, 2);
 	}
 	if (key == 34)
@@ -32,6 +33,7 @@ void	ft_key_proyection(int key, t_data *data)
 			data->c = 1;
 		if (data->brsh.gamma != 0)
 			data->c = 1;
+		ft_black(data);
 		ft_draw_x(data, data->c);
 		data->c = 2;
 	}
@@ -55,15 +57,15 @@ void	ft_key_zoom(int key, t_data *data)
 		data->space += 1;
 		data->posx -= n;
 		data->posy -= c;
-		ft_draw_x(data, data->c);
 	}
 	if (key == 44 || key == 78)
 	{
 		data->space -= 1;
 		data->posx += n;
 		data->posy += c;
-		ft_draw_x(data, data->c);
 	}
+	ft_black(data);
+	ft_draw_x(data, data->c);
 }
 
 void	ft_key_move(int key, t_data *data)
@@ -74,62 +76,36 @@ void	ft_key_move(int key, t_data *data)
 	if (data->columns > 200)
 		n = 10;
 	if (key == 123 || key == 0)
-	{
 		data->posx -= n;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 124 || key == 2)
-	{
 		data->posx += n;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 125 || key == 1)
-	{
 		data->posy += n;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 126 || key == 13)
-	{
 		data->posy -= n;
-		ft_draw_x(data, data->c);
-	}
+	ft_black(data);
+	ft_draw_x(data, data->c);
 }
 
 void	ft_key_degrees(int key, t_data *data)
 {
 	if (key == 18 || key == 83)
-	{
 		data->brsh.alpha += 0.05;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 19 || key == 84)
-	{
 		data->brsh.alpha -= 0.05;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 23 || key == 87)
-	{
 		data->brsh.beta += 0.05;
-		ft_draw_x(data, data->c);
-	}
+	ft_black(data);
 	ft_degrees(key, data);
+	ft_draw_x(data, data->c);
 }
 
 static void	ft_degrees(int key, t_data *data)
 {
 	if (key == 22 || key == 88)
-	{
 		data->brsh.beta -= 0.05;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 25 || key == 92)
-	{
 		data->brsh.gamma += 0.05;
-		ft_draw_x(data, data->c);
-	}
 	if (key == 29 || key == 82)
-	{
 		data->brsh.gamma -= 0.05;
-		ft_draw_x(data, data->c);
-	}
 }

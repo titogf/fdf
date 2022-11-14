@@ -1,6 +1,6 @@
 NAME = fdf
 
-SRC = fdf.c keyboard.c keyboard_utils.c color.c map.c bresenham.c rotate.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+SRC = fdf.c keyboard.c keyboard_utils.c pixel.c color.c map.c menu.c bresenham.c rotate.c draw.c utils.c ft_split.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 RED	= '\033[1;31m'
 GREEN	= '\033[1;32m'
@@ -32,7 +32,7 @@ clean:
 	rm -f $(OBJS)
 	@echo $(RED)"OBJS were deleted"$(WHITE)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 	@echo $(RED)"$(NAME) deleted"$(WHITE)
 

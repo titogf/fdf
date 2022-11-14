@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:25:31 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/07 12:26:57 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:55:47 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_draw_x(t_data *data, int n)
 	int	mx;
 	int	my;
 
+	mlx_clear_window(data->mlx, data->win);
 	ft_legend(data, n);
 	my = -1;
 	while (++my < data->rows)
@@ -114,4 +115,5 @@ void	ft_draw_x(t_data *data, int n)
 		}
 	}
 	ft_draw_y(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 90);
 }

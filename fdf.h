@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:55:35 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/07 15:28:03 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:53:51 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define BUFFER_SIZE 100
 # define HEIGHT 900
+# define MAX 2147483647
+# define MIN -2147483648
 # define WIDE 1200
 # define PIXEL 50
 # define ISO 1
@@ -47,10 +49,19 @@ typedef struct s_brsh
 	int		p;
 }	t_brsh;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits;
+	int		line;
+	int		end;
+}	t_img;
+
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 	int		**height;
 	int		**color;
 	int		rows;
@@ -61,6 +72,7 @@ typedef struct s_data
 	int		posy;
 	int		c;
 	int		proyection;
+	t_img	img;
 	t_brsh	brsh;
 }	t_data;
 
@@ -68,6 +80,8 @@ void		ft_window(t_data *data);
 void		ft_malloc(t_data *data, char *av, int fd);
 void		ft_draw_x(t_data *data, int n);
 
+void		ft_black(t_data *data);
+void		ft_menu(t_data *data);
 void		ft_legend(t_data *data, int n);
 void		ft_len1(t_data *data);
 

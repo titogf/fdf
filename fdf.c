@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:39:23 by gfernand          #+#    #+#             */
-/*   Updated: 2022/11/10 16:13:53 by gfernand         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:08:52 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int	main(int ac, char **av)
 
 	ft_wrong(ac, av[1]);
 	fd = open(av[1], O_RDONLY);
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDE, HEIGHT, "FDF");
-	if (data.win_ptr == NULL)
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, WIDE, HEIGHT, "FDF");
+	if (data.win == NULL)
 	{
-		free(data.win_ptr);
+		free(data.win);
 		ft_putfinish("WRONG WINDOW\n");
 	}
+	data.img.img = mlx_new_image(data.mlx, WIDE, HEIGHT);
 	ft_malloc(&data, av[1], fd);
 	ft_draw_x(&data, 1);
 	ft_window(&data);
